@@ -20,8 +20,8 @@
         );
 
         // Load existing data from contacts.json
-        $existingData = json_decode(file_get_contents("../../data/contact.json"), true);
-        // Auction-Site\app\data\contact.json
+        $existingData = json_decode(file_get_contents("../../../data/contact/contact.json"), true);
+        
         // Add the new form data to the existing data
         $existingData[] = $formData;
 
@@ -29,7 +29,7 @@
         $jsonData = json_encode($existingData, JSON_PRETTY_PRINT);
 
         // Save the JSON data back to contacts.json
-        file_put_contents("../../data/contact.json", $jsonData);
+        file_put_contents("../../../data/contact/contact.json", $jsonData);
 
         // Display a success message
         echo "<p>Thank you for your submission!</p>";
