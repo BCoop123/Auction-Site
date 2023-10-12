@@ -1,7 +1,10 @@
-# Auction-Site
+ Auction-Site
+------------------
  Site where users can buy and sell items in the style of an auction.
 
-## Collaborators
+ Collaborators
+------------------
+
 Ben Acuff - TODO
 
 Brandon Cooper - TODO
@@ -10,7 +13,9 @@ Ben Molloy - TODO
 
 Logan Poe - TODO
 
-# TO-DO List
+ TO-DO List
+------------------
+
 
 ============================================================
 Structure
