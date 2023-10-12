@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en">
 
+<?php
+
+require_once('../../lib/loginFunctions.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userInfo = [
+        $_POST["username"],
+        $_POST["password"],
+        $_POST["firstName"],
+        $_POST["lastName"],
+        $_POST["email"],
+        $_POST["address"],
+        $_POST["city"],
+        $_POST["state"],
+        $_POST["zip"]
+    ];
+
+
+    if (addNewUser($userInfo, "../../data/users/users.json")) {
+        header("Location: ../dashboard/index.php");
+        exit();
+    } else {
+        //echo "Failed to add the user.";
+    }
+}
+?>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +75,14 @@
                 <input type="password" class="form-control" id="inputPassword4" name="password">
             </div>
             <div class="col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" name="firstName">
+            </div>
+            <div class="col-md-6">
+                <label for="lasnName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" name="lastName">
+            </div>
+            <div class="col-md-12">
                 <label for="inputEmail4" class="form-label">Email</label>
                 <input type="email" class="form-control" id="inputEmail4" name="email">
             </div>
@@ -75,7 +110,7 @@
                 <a href="./login.php" onclick="showForm('signup')">Login instead</a>
             </div>
             <div class="col-6">
-                <button class="btn btn-primary w-100 mb-3" type="submit">Login</button>
+                <button class="btn btn-primary w-100 mb-3" type="submit">Signup</button>
             </div>
         </form>
     </div>
