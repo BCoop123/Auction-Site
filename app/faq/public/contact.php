@@ -22,17 +22,17 @@
                 "message" => $message
             );
 
-        // Load existing data from contacts.json
-        $existingData = json_decode(file_get_contents("../../../data/contact/contact.json"), true);
-        
-        // Add the new form data to the existing data
-        $existingData[] = $formData;
+            // Load existing data from contact.json
+            $existingData = json_decode(file_get_contents("../../../data/contact/contact.json"), true);
+
+            // Add the new form data to the existing data
+            $existingData[] = $formData;
 
             // Encode the updated data as JSON
             $jsonData = json_encode($existingData, JSON_PRETTY_PRINT);
 
-        // Save the JSON data back to contacts.json
-        file_put_contents("../../../data/contact/contact.json", $jsonData);
+            // Save the JSON data back to contact.json
+            file_put_contents("../../../data/contact/contact.json", $jsonData);
 
             // Display a success message
             echo "<div class='alert alert-success mt-3'>Thank you for your submission!</div>";
@@ -46,7 +46,7 @@
             </div>
 
             <div class="form-group">
-                <label for="email">Email:</label>
+                <label for "email">Email:</label>
                 <input type="email" class="form-control" name="email" id="email" required>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
@@ -58,6 +58,9 @@
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+
+        <!-- Back button to go back a page -->
+        <a href="javascript:history.back()" class="btn btn-secondary mt-3">Back</a>
     </div>
 
     <!-- Include Bootstrap JS and jQuery -->
@@ -66,4 +69,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
