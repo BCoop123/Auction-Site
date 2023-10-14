@@ -79,8 +79,10 @@ Header (reusable) -> Ben M
 Footer (reusable) -> Ben M
 Lading (admin)    -> Brandon
 Landing (public)  -> Brandon
-About (admin)     ->
-About (public)    ->
+About (admin)     -> Ben A
+About (public)    -> Ben A
+About (admin)     -> Ben A
+About (public)    -> Ben A
 Login 		  -> Brandon
 Dashboard         ->
 FAQ (admin)       -> Ben A
