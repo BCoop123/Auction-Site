@@ -9,5 +9,71 @@
         "city": "Walton",
         "state": "...",
         "zip": "41094"
+    },
+    {
+        "username": "test2",
+        "password": "test",
+        "firstName": "test",
+        "lastName": "test",
+        "email": "test@gmail.com",
+        "address": "test",
+        "city": "test",
+        "state": "...",
+        "zip": "test"
+    },
+    {
+        "username": "test3",
+        "password": "test",
+        "firstName": "test",
+        "lastName": "test",
+        "email": "test@gmail.com",
+        "address": "test",
+        "city": "test",
+        "state": "...",
+        "zip": "test"
+    },
+    {
+        "username": "test4",
+        "password": "test4",
+        "firstName": "test4",
+        "lastName": "test4",
+        "email": "test@gmail.com",
+        "address": "test",
+        "city": "test",
+        "state": "...",
+        "zip": "test"
+    },
+    {
+        "username": "test5",
+        "password": "test",
+        "firstName": "test",
+        "lastName": "test",
+        "email": "test@gmail.com",
+        "address": "test",
+        "city": "test",
+        "state": "...",
+        "zip": "test"
+    },
+    {
+        "username": "",
+        "password": "",
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "address": "",
+        "city": "",
+        "state": "Choose...",
+        "zip": ""
+    },
+    {
+        "username": "test6",
+        "password": "test",
+        "firstName": "test",
+        "lastName": "tets",
+        "email": "test@gmail.com",
+        "address": "test",
+        "city": "tset",
+        "state": "...",
+        "zip": "test"
     }
 ]

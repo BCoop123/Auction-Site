@@ -34,6 +34,7 @@ function addNewUser($userInfo, $filePath) {
     
         $jsonContent = json_encode($users, JSON_PRETTY_PRINT);
         if (file_put_contents($filePath, $jsonContent) !== false) {
+            setcookie("username", $userInfo[0], time() + (10 * 365 * 24 * 60 * 60), "/");
             return true; // Return true on success
         }
         return false; // Return false on failure
@@ -54,11 +55,21 @@ function login($userInfo, $filePath) {
     }
 
 
+    $isAuthenticated = false;
     foreach ($users as $user) {
-        if ($userInfo[0] == $user["username"] and $userInfo[1]) {
-            $isNewUser = False;
+        if ($userInfo[0] == $user["username"] && $userInfo[1] == $user["password"]) {
+            $isAuthenticated = true;
+            break; // exit loop once a match is found
         }
-    };
+    }
+    if ($isAuthenticated) {
+        setcookie("username", $userInfo[0], time() + (10 * 365 * 24 * 60 * 60), "/");
+        return True;
+    } else {
+        //echo "incorrect credentials";
+        return False;
+    }
+    
 }
 
 ?>
