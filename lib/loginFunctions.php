@@ -44,4 +44,21 @@ function addNewUser($userInfo, $filePath) {
     }
     
 }
+
+function login($userInfo, $filePath) {
+    $existingData = file_get_contents($filePath);
+    $users = json_decode($existingData, true); // true for associative array
+
+    if (!is_array($users)) {
+        $users = []; // Initialize as an empty array if the file is empty or invalid
+    }
+
+
+    foreach ($users as $user) {
+        if ($userInfo[0] == $user["username"] and $userInfo[1]) {
+            $isNewUser = False;
+        }
+    };
+}
+
 ?>
