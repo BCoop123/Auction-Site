@@ -1,0 +1,13 @@
+[
+    {
+        "username": "test",
+        "password": "test",
+        "firstName": "test",
+        "lastName": "test",
+        "email": "test@gmail.com",
+        "address": "53 Showalter Trace",
+        "city": "Walton",
+        "state": "...",
+        "zip": "41094"
+    }
+]

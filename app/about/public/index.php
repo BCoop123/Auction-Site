@@ -77,3 +77,6 @@
     <script src="../js/scripts.js"></script>
 </body>
 </html>
+<?php
+echo 'about'
+?>

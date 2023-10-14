@@ -81,6 +81,8 @@ Lading (admin)    -> Brandon
 Landing (public)  -> Brandon
 About (admin)     -> Ben A
 About (public)    -> Ben A
+About (admin)     -> Ben A
+About (public)    -> Ben A
 Login 		  -> Brandon
 Dashboard         ->
 FAQ (admin)       -> Ben A
