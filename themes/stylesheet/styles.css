@@ -68,6 +68,8 @@ main{
 .searchButton{
     height: 40px;
     border-radius: 0px 7px 7px 0px;
+    background-color: #ffc907;
+    
 }
 
 .user-button {
