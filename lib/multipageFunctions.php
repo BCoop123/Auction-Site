@@ -1,6 +1,6 @@
 <?php
 
-function getProfileImagePath($pathToSurface, $defaultImg = '../../data/assets/account.png') {
+function getProfileImagePath($pathToSurface, $defaultImg = '/data/assets/account.png') {
     $filePath = $pathToSurface . "/data/profile/profiles.json";
 
     // Check if username cookie is set
@@ -19,7 +19,7 @@ function getProfileImagePath($pathToSurface, $defaultImg = '../../data/assets/ac
     }
 
     // Return default image path if profile or image not found
-    return $defaultImg;
+    return $pathToSurface . $defaultImg;
 }
 
 ?>
