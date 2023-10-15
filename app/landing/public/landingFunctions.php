@@ -5,7 +5,7 @@ function displaySections() {
     $sections = readJsonData('../../../data/landing/sections.json');
     
     foreach ($sections as $key => $section) {
-        $imgPath = "/ase230/Auction-Site" . $section["img"];
+        $imgPath = "../../.." . $section["img"];
 
         if ($key % 2 == 0) {
             echo '
