@@ -25,7 +25,7 @@ echo'
       <header>
         <div class="row text-light" style="background-image: url(' . $pathToSurface . '/data/assets/demos.png); background-color: #e8e8e8;">
           <div class="col-3 d-flex justify-content-center pt-2">
-            <a href="/"><img class="logo" src="' . $pathToSurface . '/data/assets/logo.png" height="175px"></a>      
+            <a href="' . $pathToSurface . '/app/dashboard/index.php"><img class="logo" src="' . $pathToSurface . '/data/assets/logo.png" height="175px"></a>      
           </div>
           <div class="col-6 d-flex justify-content-center align-items-center">
             <div class="d-flex">
@@ -61,15 +61,15 @@ echo'
                 <a href="' . $pathToSurface . '/app/profile/index.php"><img src="' . getProfileImagePath($pathToSurface) . '" alt="profile" style="width: 50px; height: 50px; margin-left: 10px;"></a>
                 <h2 style="text-align: center;" class="profileUsername">Sign In / Sign Up</h2>
               </div>
-              <a href="#"><div class="custom-btn" onclick="goHome()">Home</div></a>
+              <a href="' . $pathToSurface . '/app/dashboard/index.php"><div class="custom-btn">Dashboard</div></a>
               <hr class="menuDivider">
-              <a href="#"><div class="custom-btn" onclick="goAboutUs()">Nav Page</div></a>
+              <a href="#"><div class="custom-btn" onclick="goAboutUs()">Create Auction</div></a>
               <hr class="menuDivider">
               <a href="#"><div class="custom-btn" onclick="goToSelfProfile()">Account Details</div></a>
               <hr class="menuDivider">
-              <a href="#"><div class="custom-btn" onclick="goTermsConditions()">Terms & Conditions</div></a>
+              <a href="#"><div class="custom-btn" onclick="goTermsConditions()">FAQ</div></a>
               <hr class="menuDivider">
-              <a href="#"><div class="custom-btn signStatus" onclick="signEvent()">Something</div></a>
+              <a href="#"><div class="custom-btn signStatus" onclick="signEvent()">Sign In</div></a>
     
             </section>
           </div>

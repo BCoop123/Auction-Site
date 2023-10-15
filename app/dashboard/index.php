@@ -219,11 +219,8 @@ importHeader($pathToSurface);
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <?php
-            importFooter($pathToSurface);
-
-            ?> 
-        </footer>
+        <?php
+        importFooter($pathToSurface);
+        ?> 
     </body>
 </html>
