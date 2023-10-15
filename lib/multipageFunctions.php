@@ -22,4 +22,15 @@ function getProfileImagePath($pathToSurface, $defaultImg = '../../data/assets/ac
     return $defaultImg;
 }
 
+function populateSignAction(){
+    if (isset($_COOKIE["username"])) {
+        echo'
+        '
+
+    }
+    else{
+
+    }
+}
+
 ?>
