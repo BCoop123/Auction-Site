@@ -1,0 +1,22 @@
+[
+    {
+        "username": "test",
+        "profileIMG": "..\/..\/data\/profile\/img\/account.png",
+        "bio": ""
+    },
+    {
+        "username": "test2",
+        "profileIMG": "..\/..\/data\/profile\/img\/account.png",
+        "bio": ""
+    },
+    {
+        "username": "test3",
+        "profileIMG": "..\/..\/data\/profile\/img\/1223423733.png",
+        "bio": "test"
+    },
+    {
+        "username": "BCoop123",
+        "profileIMG": "..\/..\/data\/profile\/img\/1496322690.png",
+        "bio": "test"
+    }
+]

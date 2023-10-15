@@ -1,3 +1,7 @@
+<?php
+include_once("../../lib/multipageFunctions");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -40,7 +44,7 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
-                    <a href="../profile/index.php"><img src="../../data/assets/account.png" alt="profile" style="width: 50px; height: 50px; margin-left: 10px;"></a>
+                    <a href="../profile/index.php"><img src="<?= getProfileImagePath() ?>" alt="profile" style="width: 50px; height: 50px; margin-left: 10px;"></a>
                 </div>
             </div>
         </nav>
@@ -263,6 +267,5 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
     </body>
 </html>

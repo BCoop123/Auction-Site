@@ -34,7 +34,8 @@ function addNewUser($userInfo, $filePath) {
     
         $jsonContent = json_encode($users, JSON_PRETTY_PRINT);
         if (file_put_contents($filePath, $jsonContent) !== false) {
-            setcookie("username", $userInfo[0], time() + (10 * 365 * 24 * 60 * 60), "/");
+            initProfile($userInfo[0], "../../data/profile/profiles.json");
+            login([$userInfo[0], $userInfo[1]], $filePath);
             return true; // Return true on success
         }
         return false; // Return false on failure
@@ -70,6 +71,24 @@ function login($userInfo, $filePath) {
         return False;
     }
     
+}
+
+function initProfile($username, $filePath) {
+    $existingData = file_get_contents($filePath);
+    $profiles = json_decode($existingData, true); // true for associative array
+
+    $newProfile = [
+        "username" => $username,
+        "profileIMG" => "../../data/profile/img/account.png",
+        "bio" => ""
+    ];
+
+    $profiles[] = $newProfile;
+
+    $jsonContent = json_encode($profiles, JSON_PRETTY_PRINT);
+    if (file_put_contents($filePath, $jsonContent) !== false) {
+        setcookie("username", $userInfo[0], time() + (10 * 365 * 24 * 60 * 60), "/");
+    }
 }
 
 ?>

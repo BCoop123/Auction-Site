@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" class="form-control" id="inputPassword4" name="password">
             </div>
             <div class="col-6 switch-link d-flex">
-                <a href="./signup.php" onclick="showForm('signup')">Sign up instead</a>
+                <a href="./signup.php" onclick="showForm('signup')" style="text-decoration: none;">Sign up instead</a>
             </div>
             <div class="col-6">
                 <button class="btn btn-primary w-100 mb-3" type="submit">Login</button>
