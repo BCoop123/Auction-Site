@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" class="form-control" id="inputZip" name="zip">
             </div>
             <div class="col-6 switch-link d-flex">
-                <a href="./login.php" onclick="showForm('signup')">Login instead</a>
+                <a href="./login.php" onclick="showForm('signup')" style="text-decoration: none;">Login instead</a>
             </div>
             <div class="col-6">
                 <button class="btn btn-primary w-100 mb-3" type="submit">Signup</button>
