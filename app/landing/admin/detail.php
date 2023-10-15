@@ -48,7 +48,7 @@ if (isset($_GET['name'])) {
                 <tr>
                     <td><?php echo $sectionInfo['title']; ?></td>
                     <td><?php echo $sectionInfo['text']; ?></td>
-                    <td><?php echo $sectionInfo['img']; ?></td>
+                    <td><img src="../../../<?php echo $sectionInfo['img']; ?>" width="100" height="100" alt="Section Image"></td>
                 </tr>
             </tbody>
         </table>
