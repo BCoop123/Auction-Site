@@ -1,5 +1,5 @@
 <?php
-include_once("../../lib/multipageFunctions");
+include_once("../../lib/multipageFunctions.php");
 include_once("../../themes/components/header_footer_import.php");
 $pathToSurface = "../..";
 
