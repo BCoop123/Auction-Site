@@ -21,7 +21,7 @@ function createTable($headings, $sections) {
             <tr>
                 <td><a href="./detail.php?name=' . urlencode($section[1]) . '">' . $section[1] . '</a></td>
                 <td>' . $section[2] . '</td>
-                <td>' . $section[0] . '</td>
+                <td><img src="../../../' . $section[0] . '" width="100" height="100" alt="Section Image"></td>
             </tr>
         ';
     }
@@ -67,6 +67,7 @@ function getSectionInfo($dir_path) {
     }
     return $sectionsArray;
 }
+
 function getSectionDetails($sectionName) {
     $jsonFile = "../../../data/landing/sections.json";
 
