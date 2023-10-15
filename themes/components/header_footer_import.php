@@ -58,7 +58,7 @@ echo'
               <div class="menu-div-header">
               
 
-                <a href="' . $pathToSurface . '/app/profile/index.php"><img src="' . getProfileImagePath() . '" alt="profile" style="width: 50px; height: 50px; margin-left: 10px;"></a>
+                <a href="' . $pathToSurface . '/app/profile/index.php"><img src="' . getProfileImagePath($pathToSurface) . '" alt="profile" style="width: 50px; height: 50px; margin-left: 10px;"></a>
                 <h2 style="text-align: center;" class="profileUsername">Sign In / Sign Up</h2>
               </div>
               <a href="' . $pathToSurface . '/app/dashboard/index.php"><div class="custom-btn">Dashboard</div></a>

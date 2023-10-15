@@ -79,7 +79,7 @@ function initProfile($username, $filePath) {
 
     $newProfile = [
         "username" => $username,
-        "profileIMG" => "../../data/profile/img/account.png",
+        "profileIMG" => "/data/assets/account.png",
         "bio" => ""
     ];
 
