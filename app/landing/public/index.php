@@ -1,3 +1,7 @@
+<?php
+require_once("./landingFunctions.php")
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -48,54 +52,10 @@
                 </div>
             </div>
         </header>
-        <!-- Content section 1-->
-        <section id="scroll">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/04.jpg" alt="..." /></div>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="p-5">
-                            <h2 class="display-4">Get Shreksy...</h2>
-                            <p>Living with an ogre as a lover is truly an enchanting experience. Those big, green, rugged hands might seem intimidating at first, but they're surprisingly gentle, especially during slow dances in the moonlight.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Content section 2-->
-        <section>
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/08.jpg" alt="..." /></div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="p-5">
-                            <h2 class="display-4">Live, Laugh, Love</h2>
-                            <p>Embrace life the way a donkey relishes waffles: with messy enthusiasm and unexpected delight. Just imagine, if our daily challenges were syrup and butter, tackled with a mouthful of gusto. So, whenever life feels like a steep hill, remember the donkey, and savor every moment like it's a bite of your favorite breakfast treat!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Content section 3-->
-        <section>
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/09.jpg" alt="..." /></div>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="p-5">
-                            <h2 class="display-4">Meet Your Princess!</h2>
-                            <p>Lord Farquaad, in his grandiose castle, believed not in fate but in the certainty of his magic mirror. "Mirror, mirror, show me where," he'd command, seeking not just any love, but the perfect fairy-tale ending.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Content -->
+
+        <?php displaySections() ?>
+
         <!-- Footer-->
         <footer class="py-5 bg-black">
             <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Bidorama Inc. 2023</p></div>
