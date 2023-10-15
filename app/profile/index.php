@@ -13,6 +13,8 @@
 
 <div class="container mt-5">
     <?php
+        $pathToSurface = "../..";
+
         function updateProfile($username, $newBio, $uploadedFile, $filePath) {
             $existingData = file_get_contents($filePath);
             $profiles = json_decode($existingData, true);
@@ -88,10 +90,12 @@
                 }
             }
 
+            $fullPath = $pathToSurface . $userProfile["profileIMG"];
+
             if ($userProfile) {
                 // Display profile information
                 echo "<div class='text-center'>";
-                echo "<img src='{$userProfile["profileIMG"]}' alt='Profile Image' class='rounded-circle' style='width: 150px; height: 150px;'>";
+                echo "<img src='$fullPath' alt='Profile Image' class='rounded-circle' style='width: 150px; height: 150px;'>";
                 echo "<h2>{$userProfile["username"]}</h2>";
                 echo "<p>{$userProfile["bio"]}</p>";
                 echo "<button class='btn btn-primary' data-toggle='modal' data-target='#editProfileModal'>Edit Profile</button>";

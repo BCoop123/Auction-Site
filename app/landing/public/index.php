@@ -48,7 +48,7 @@ require_once("./landingFunctions.php")
                 <div class="container px-5">
                     <h1 class="masthead-heading mb-0">One Bidding Site</h1>
                     <h2 class="masthead-subheading mb-0">For All Your Auction Needs</h2>
-                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="../../faq/public/index.php" style="background-color: white; border-color: wheat; color: black">Learn More</a>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="../../about/public/index.php" style="background-color: white; border-color: wheat; color: black">Learn More</a>
                 </div>
             </div>
         </header>

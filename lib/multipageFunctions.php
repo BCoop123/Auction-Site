@@ -1,6 +1,8 @@
 <?php
 
-function getProfileImagePath($filePath = '../../data/profile/profiles.json', $defaultImg = '../../data/profile/img/account.png') {
+function getProfileImagePath($pathToSurface, $defaultImg = '../../data/assets/account.png') {
+    $filePath = $pathToSurface . "/data/profile/profiles.json";
+
     // Check if username cookie is set
     if (isset($_COOKIE["username"])) {
         $username = $_COOKIE["username"];
@@ -11,7 +13,7 @@ function getProfileImagePath($filePath = '../../data/profile/profiles.json', $de
 
         foreach ($profiles as $profile) {
             if ($profile["username"] == $username) {
-                return $profile["profileIMG"];
+                return $pathToSurface . $profile["profileIMG"];
             }
         }
     }
