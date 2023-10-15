@@ -1,21 +1,28 @@
 <?php
 // Include necessary functions
-require_once('./awards.php');
+require_once('./landing.php');
 
 $message = "";
+$pathToRoot =  "../../..";
 
-// Check if the 'award' parameter is set in the URL
-if (isset($_GET['award'])) {
-    $awardName = $_GET['award'];
-    $awardsFile = '../../data/awards/awards.csv';
+// Check if the 'name' parameter is set in the URL
+if (isset($_GET['name'])) {
+    $sectionName = $_GET['name'];
 
-    // Check if the form is submitted to delete the award
+    $sectionDetails = getSectionDetails($sectionName);
+    $imgPath = $sectionDetails['img'];
+
+    // Check if the form is submitted to delete the section
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm_delete'])) {
-        if (deleteAwardFromCSV($awardsFile, $awardName)) {  // Modify this line to use the appropriate function and arguments to delete the award
+        if (deleteSection($sectionName)) {
+            // Delete the associated image
+            if (file_exists($pathToRoot . $imgPath) && is_writable($pathToRoot . $imgPath)) {
+                unlink($pathToRoot . $imgPath);
+            }
             header("Location: index.php?message=deleted");
             exit();
         } else {
-            $message = "Failed to delete the award.";
+            $message = "Failed to delete the section.";
         }
     }
 } else {
@@ -30,7 +37,7 @@ if (isset($_GET['award'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Award</title>
+    <title>Delete Section</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -38,7 +45,7 @@ if (isset($_GET['award'])) {
 
     <div class="container mt-5">
         <h1>Confirm Deletion</h1>
-        <p>Are you sure you want to delete this award?</p>
+        <p>Are you sure you want to delete this section?</p>
         
         <?php
         if ($message) {
@@ -46,7 +53,7 @@ if (isset($_GET['award'])) {
         }
         ?>
 
-        <form method="post" action="delete.php?award=<?= urlencode($awardName) ?>">
+        <form method="post" action="delete.php?name=<?= urlencode($sectionName) ?>">
             <button type="submit" name="confirm_delete" class="btn btn-danger">Yes, Delete</button>
             <a href="index.php" class="btn btn-secondary">Cancel</a>
         </form>
@@ -58,4 +65,3 @@ if (isset($_GET['award'])) {
 </body>
 
 </html>
-
