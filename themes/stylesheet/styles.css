@@ -114,7 +114,7 @@ main{
   .profileIMG{
     margin: auto;
     display: block;
-    height: 80%;
+    height: 100%;
   }
 
   .menu div {
@@ -317,6 +317,34 @@ main{
     background-position: right;
     color: #FFFFFF;
 
+  }
+  .sign-out-button {
+    text-align: center;
+    background: #e8e8e8;
+    transition: all 0.3s ease;
+    background: linear-gradient(to right, #e8e8e8 50%, #ffc907 50%) left;
+    background-size: 200% 100%;
+    text-decoration: none;
+    transition: .3s ease-out;
+    border: none; /* Remove the border */
+    width: 100%; /* Make the button stretch from one side to the other */
+    color: #ffc907;
+
+  }
+  .sign-out-button:hover{
+    background-position: right;
+    color: #FFFFFF;
+  }
+  form{
+    text-align: center;
+    padding: 1em;
+    background: #e8e8e8;
+    transition: all 0.3s ease;
+    background: linear-gradient(to right, #e8e8e8 50%, #ffc907 50%) left;
+    background-size: 200% 100%;
+    text-decoration: none;
+    transition: .3s ease-out;
+    color: #000;
   }
 
 footer{
