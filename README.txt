@@ -7,13 +7,13 @@ Auction-Site
  Collaborators
 ------------------
 
-Ben Acuff - TODO
+Ben Acuff
 
-Brandon Cooper - TODO
+Brandon Cooper
 
-Ben Molloy - TODO
+Ben Molloy
 
-Logan Poe - TODO
+Logan Poe
 
  TO-DO List
 ------------------
@@ -85,10 +85,10 @@ About (admin)     -> Ben A
 About (public)    -> Ben A
 About (admin)     -> Ben A
 About (public)    -> Ben A
-Login 		  -> Brandon
-Dashboard         ->
+Login 		           -> Brandon
+Dashboard         -> Logan
 FAQ (admin)       -> Ben A
 FAQ (public)      -> Ben A
 Profile           -> Brandon
-Detail (admin)    ->
-Detail (public)   ->
+Detail (admin)    -> N/A
+Detail (public)   -> N/A
