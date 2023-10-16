@@ -1,51 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once("../../lib/multipageFunctions.php");
+require_once("../../themes/components/header_footer_import.php");
+$pathToSurface = "../..";
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+importHeader($pathToSurface);
 
-<body>
+?>
 
 <div class="container mt-5">
     <?php
         $pathToSurface = "../..";
 
-        function updateProfile($username, $newBio, $uploadedFile, $filePath) {
+        function updateProfile($username, $newBio, $uploadedFile, $filePath, $pathToSurface) {
             $existingData = file_get_contents($filePath);
             $profiles = json_decode($existingData, true);
-
+        
             foreach ($profiles as &$profile) {
                 if ($profile["username"] == $username) {
                     // Update the bio
                     $profile["bio"] = $newBio;
-            
+        
                     // Update the profile image if a new file has been uploaded
-                    if ($uploadedFile && is_uploaded_file($uploadedFile['tmp_name'])) {
-                        // Check if the file is an image
+                    if ($uploadedFile && $uploadedFile['error'] == 0) {
                         $check = getimagesize($uploadedFile["tmp_name"]);
                         if($check !== false) {
-                            // Define your target directory and ensure you're doing all necessary security checks!
-                            $targetDir = "../../data/profile/img/";
+                            $targetDir = $pathToSurface . "/data/profile/img/";
                             $fileExtension = pathinfo($uploadedFile["name"], PATHINFO_EXTENSION);
                             $randomName = rand() . "." . $fileExtension;
                             $targetFile = $targetDir . $randomName;
-                
-                            // Delete old image unless it's profile.png
+        
+                            // Delete old image unless it's account.png
                             $oldImage = $profile["profileIMG"];
-                            if (basename($oldImage) !== "profile.png") {
-                                unlink($oldImage);
+                            if (basename($oldImage) !== "account.png" && file_exists($pathToSurface . $oldImage)) {
+                                unlink($pathToSurface . $oldImage);
                             }
-                
+        
                             // Attempt to move the uploaded file
                             if (move_uploaded_file($uploadedFile["tmp_name"], $targetFile)) {
-                                $profile["profileIMG"] = $targetFile;
+                                $profile["profileIMG"] = "/data/profile/img/" . $randomName;
                             } else {
-                                // Handle failed upload
                                 echo "Sorry, there was an error uploading your file.";
                                 return;
                             }
@@ -56,7 +49,7 @@
                     }
                 }
             }
-            
+        
             // Save the updated profiles data back to the JSON file
             $jsonContent = json_encode($profiles, JSON_PRETTY_PRINT);
             if (file_put_contents($filePath, $jsonContent) !== false) {
@@ -64,14 +57,14 @@
             } else {
                 //echo "Error updating profile.";
             }
-        }
+        }        
         
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_COOKIE["username"])) {
             $username = $_COOKIE["username"];
             $bio = $_POST["bio"];
             $uploadedFile = $_FILES["profileIMG"];
         
-            updateProfile($username, $bio, $uploadedFile, '../../data/profile/profiles.json');
+            updateProfile($username, $bio, $uploadedFile, '../../data/profile/profiles.json', $pathToSurface);
         }
         
 
@@ -141,5 +134,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+
+<?php
+        importFooter($pathToSurface);
+?> 
