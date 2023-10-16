@@ -56,20 +56,20 @@ echo'
             </section>
             <section class="menu menu--off">
               <div class="menu-div-header">
-              
-
-                <a href="' . $pathToSurface . '/app/profile/index.php"><img src="' . getProfileImagePath($pathToSurface) . '" alt="profile" style="width: 50px; height: 50px; margin-left: 10px;"></a>
+                <a href="' . getProfileLink($pathToSurface) . '"><img src="' . getProfileImagePath($pathToSurface) . '" alt="profile" style="width: 100px; height: 100px; margin-left: 10px; border-radius: 50%;"></a>
                 <h2 style="text-align: center;" class="profileUsername">Sign In / Sign Up</h2>
               </div>
               <a href="' . $pathToSurface . '/app/dashboard/index.php"><div class="custom-btn">Dashboard</div></a>
               <hr class="menuDivider">
-              <a href="#"><div class="custom-btn" onclick="goAboutUs()">Create Auction</div></a>
+              <a href="#"><div class="custom-btn">Create Auction</div></a>
               <hr class="menuDivider">
-              <a href="#"><div class="custom-btn" onclick="goToSelfProfile()">Account Details</div></a>
+              <a href="' . $pathToSurface . '/app/faq/public/index.php"><div class="custom-btn">FAQ</div></a>
               <hr class="menuDivider">
-              <a href="#"><div class="custom-btn" onclick="goTermsConditions()">FAQ</div></a>
+              <a href="' . $pathToSurface . '/app/about/public/index.php"><div class="custom-btn">About Us</div></a>
               <hr class="menuDivider">
-              <a href="#"><div class="custom-btn signStatus" onclick="signEvent()">Sign In</div></a>
+              ' . goToAccount($pathToSurface) . '
+              <hr class="menuDivider">
+              ' . populateSignActionNav($pathToSurface) . '
     
             </section>
           </div>
@@ -87,12 +87,13 @@ function importFooter($pathToSurface){
         <div class="row w-100">
           <div class="col-6 w-50 justify-content-center text-dark align-items-center footer-left">
             <h1>Quick Links:</h1>
-            <a href="#" onclick="goHome()">Home</a>
-            <a href="#" onclick="goAboutUs()">Nav Page</a>
-            <a href="#" onclick="goToSelfProfile()">Nav Page</a>
-            <a href="#" class="signStatus" onclick="signEvent()"></a>
-            <a href="#" onclick="goTermsConditions()">Nav Page</a>
-          </div>
+            <a href="' . $pathToSurface . '/app/dashboard/index.php">Dashboard</a>
+            <a href="' . $pathToSurface . '/app/about/public/index.php">About Us</a>
+            <a href="' . $pathToSurface . '/app/faq/public/index.php">FAQ</a>
+            <a href="' . $pathToSurface . '/app/about/public/index.php">About Us</a>
+            <a href="">Terms & Conditions</a>
+
+            </div>
           <div class="col-6 w-50 justify-content-center text-dark align-items-center footer-right">
             <h1>Connect with us:</h1>
             <a href="https://github.com/BCoop123/Auction-Site" target="_blank"><i class="fa-brands fa-github fa-2xl" style="color: #ffc907;"></i></a>
@@ -129,7 +130,6 @@ function importFooter($pathToSurface){
               child.add("material-design-hamburger__icon--to-arrow");
             }
 
-            checkSignedIn();
         });
 
       })();
