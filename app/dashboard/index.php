@@ -1,6 +1,6 @@
 <?php
-include_once("../../lib/multipageFunctions.php");
-include_once("../../themes/components/header_footer_import.php");
+require_once("../../lib/multipageFunctions.php");
+require_once("../../themes/components/header_footer_import.php");
 $pathToSurface = "../..";
 
 importHeader($pathToSurface);
@@ -56,6 +56,4 @@ function display_product_info($product) {
         <!-- Footer-->
         <?php
         importFooter($pathToSurface);
-        ?>
-    </body>
-</html>
+        ?> 

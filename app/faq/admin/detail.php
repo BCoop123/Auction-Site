@@ -1,10 +1,4 @@
 <?php
-require_once("../../../lib/multipageFunctions.php");
-require_once("../../../themes/components/header_footer_import.php");
-$pathToSurface = "../../..";
-
-importHeader($pathToSurface);
-
 $contactsFilePath = "../../../data/contact/contact.json"; // Update the file path
 $contactIndex = isset($_GET['file']) ? (int)$_GET['file'] : -1; // Get the contact index from the URL
 
@@ -25,7 +19,14 @@ if (isset($_POST['delete'])) {
     $contactsData = array_values($contactsData); // Reindex the array
     $jsonData = json_encode($contactsData, JSON_PRETTY_PRINT);
     file_put_contents($contactsFilePath, $jsonData);
+    header("Location: index.php"); // Redirect back to the contact list
 }
+
+require_once("../../../lib/multipageFunctions.php");
+require_once("../../../themes/components/header_footer_import.php");
+$pathToSurface = "../../..";
+
+importHeader($pathToSurface);
 ?>
 
     <div class="container">

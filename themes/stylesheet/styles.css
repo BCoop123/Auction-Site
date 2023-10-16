@@ -424,3 +424,26 @@ footer a {
 .alertButtonClass{
   background: #bebebe;
 }
+
+/*login CSS*/
+
+body {
+  background-color: #f5f5f5;
+}
+
+
+.login-signup-box {
+  width: 600px;
+  margin: 20px auto; /* Top and bottom margin of 20px, auto left/right to center the box */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.switch-link {
+  text-align: right;
+  color: blue; /* kept blue color */
+  text-decoration: none; /* removed underline */
+}
