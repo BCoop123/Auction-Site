@@ -335,6 +335,8 @@ main{
     background-position: right;
     color: #FFFFFF;
   }
+
+  /*
   form{
     text-align: center;
     padding: 1em;
@@ -346,6 +348,7 @@ main{
     transition: .3s ease-out;
     color: #000;
   }
+*/
 
 footer{
   position: static;
