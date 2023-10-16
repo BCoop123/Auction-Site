@@ -33,7 +33,7 @@ function display_product_info($product) {
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Traditional Auction</h1>
+                    <h1 class="display-4 fw-bolder">Traditional Auctions</h1>
                 </div>
             </div>
         </header>
