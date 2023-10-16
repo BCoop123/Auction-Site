@@ -1,4 +1,10 @@
 <?php
+require_once("../../../lib/multipageFunctions.php");
+require_once("../../../themes/components/header_footer_import.php");
+$pathToSurface = "../../..";
+
+importHeader($pathToSurface);
+
 $faqFilePath = '../../../data/faq/faq.txt';
 
 // Check if the form is submitted to save changes
@@ -36,9 +42,7 @@ $faqContent = file_get_contents($faqFilePath);
         </form>
     </div>
 
-    <!-- Include Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+<!-- Footer-->
+<?php
+importFooter($pathToSurface);
+?> 

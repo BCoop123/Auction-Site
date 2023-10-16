@@ -1,4 +1,10 @@
 <?php
+require_once("../../../lib/multipageFunctions.php");
+require_once("../../../themes/components/header_footer_import.php");
+$pathToSurface = "../../..";
+
+importHeader($pathToSurface);
+
 $dir_path = "../../../data/contact"; // Update the directory path as needed
 $contactsFilePath = "{$dir_path}/contact.json";
 $headings = ["Name", "Email", "Message"]; // Update the headings to match your JSON keys
@@ -7,17 +13,6 @@ $headings = ["Name", "Email", "Message"]; // Update the headings to match your J
 $contactsData = json_decode(file_get_contents($contactsFilePath), true);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact List</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
     <div class="container">
         <h1 class="mt-5">Contact List</h1>
 
@@ -56,9 +51,7 @@ $contactsData = json_decode(file_get_contents($contactsFilePath), true);
         <a href="editfaq.php" class="btn btn-success mt-3">Edit FAQ Page</a>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+<!-- Footer-->
+<?php
+importFooter($pathToSurface);
+?> 
