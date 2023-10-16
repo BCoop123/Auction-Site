@@ -85,7 +85,7 @@ About (admin)     -> Ben A
 About (public)    -> Ben A
 About (admin)     -> Ben A
 About (public)    -> Ben A
-Login 		           -> Brandon
+Login 		 -> Brandon
 Dashboard         -> Logan
 FAQ (admin)       -> Ben A
 FAQ (public)      -> Ben A
