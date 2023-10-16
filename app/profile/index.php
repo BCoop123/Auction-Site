@@ -91,7 +91,7 @@ importHeader($pathToSurface);
                 echo "<img src='$fullPath' alt='Profile Image' class='rounded-circle' style='width: 150px; height: 150px;'>";
                 echo "<h2>{$userProfile["username"]}</h2>";
                 echo "<p>{$userProfile["bio"]}</p>";
-                echo "<button class='btn btn-primary' data-toggle='modal' data-target='#editProfileModal'>Edit Profile</button>";
+                echo "<button class='btn btn-primary' data-toggle='modal' data-target='#editProfileModal' style='margin-bottom: 20px'>Edit Profile</button>";
                 echo "</div>";
             } else {
                 echo "<p class='text-danger'>Profile not found!</p>";

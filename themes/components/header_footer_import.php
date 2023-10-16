@@ -180,11 +180,12 @@ function importTinyFooter($pathToSurface){
       <div class="row w-100">
         <div class="col-6 w-50 justify-content-center text-dark align-items-center footer-left">
           <h1>Quick Links:</h1>
-          <a href="#" onclick="goHome()">Home</a>
-          <a href="#" onclick="goAboutUs()">Nav Page</a>
-          <a href="#" onclick="goToSelfProfile()">Nav Page</a>
-          <a href="#" class="signStatus" onclick="signEvent()"></a>
-          <a href="#" onclick="goTermsConditions()">Nav Page</a>
+          <a href="' . $pathToSurface . '/app/landing/public/index.php">Front Page</a>
+          <a href="' . $pathToSurface . '/app/dashboard/index.php">Dashboard</a>
+          <a href="' . $pathToSurface . '/app/about/public/index.php">About Us</a>
+          <a href="' . $pathToSurface . '/app/faq/public/index.php">FAQ</a>
+          <a href="' . $pathToSurface . '/app/about/public/index.php">About Us</a>
+          <a href="">Terms & Conditions</a>
         </div>
         <div class="col-6 w-50 justify-content-center text-dark align-items-center footer-right">
           <h1>Connect with us:</h1>

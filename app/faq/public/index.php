@@ -23,7 +23,7 @@ importHeader($pathToSurface);
             ?>
         </div>
 
-        <a href="contact.php" class="btn btn-primary" style="margin-bottom: 10px;">Contact Us</a>
+        <a href="contact.php" class="btn btn-primary" style="margin-bottom: 20px;">Contact Us</a>
     </div>
 
 

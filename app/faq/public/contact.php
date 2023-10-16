@@ -56,11 +56,11 @@ importHeader($pathToSurface);
                 <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px">Submit</button>
         </form>
 
         <!-- Back button to go back a page -->
-        <a href="javascript:history.back()" class="btn btn-secondary mt-3">Back</a>
+        <a href="javascript:history.back()" class="btn btn-secondary mt-3" style="margin-bottom: 20px">Back</a>
     </div>
 
 <!-- Footer-->
