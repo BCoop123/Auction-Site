@@ -39,15 +39,21 @@ function display_product_info($product) {
             </div>
         </header>
         <!-- Section-->
-        <section class="py-5">
-            <?php
-                echo '<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">';
-                foreach ($data['products'] as $product) {
-                    display_product_info($product);
-                }
-                echo '</div>';
-            ?>
-        </section>
+        <div class="container"> <!-- Adding a container for the grid system -->
+            <div class="row justify-content-center"> <!-- This row centers the col-10 content -->
+                <div class="col-11">
+                    <section class="py-5">
+                        <?php
+                            echo '<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">';
+                            foreach ($data['products'] as $product) {
+                                display_product_info($product);
+                            }
+                            echo '</div>';
+                        ?>
+                    </section>
+                </div>
+            </div>
+        </div>
         <!-- Footer-->
         <?php
         importFooter($pathToSurface);
