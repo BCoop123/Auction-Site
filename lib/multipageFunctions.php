@@ -53,4 +53,16 @@ function goToAccount($pathToSurface){
 
     }
 }
+
+function getUserName(){
+    if (isset($_COOKIE["username"])) {
+        $username = $_COOKIE["username"];
+        return $username;
+    }
+    else {
+        return 'Sign In / Sign Up';
+
+    }
+
+}
 ?>

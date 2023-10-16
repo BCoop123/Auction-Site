@@ -57,7 +57,7 @@ echo'
             <section class="menu menu--off">
               <div class="menu-div-header">
                 <a href="' . getProfileLink($pathToSurface) . '"><img src="' . getProfileImagePath($pathToSurface) . '" alt="profile" style="width: 100px; height: 100px; margin-left: 10px; border-radius: 50%;"></a>
-                <h2 style="text-align: center;" class="profileUsername">Sign In / Sign Up</h2>
+                <h2 style="text-align: center;" class="profileUsername">' . getUsername() . '</h2>
               </div>
               <a href="' . $pathToSurface . '/app/dashboard/index.php"><div class="custom-btn">Dashboard</div></a>
               <hr class="menuDivider">
@@ -87,6 +87,7 @@ function importFooter($pathToSurface){
         <div class="row w-100">
           <div class="col-6 w-50 justify-content-center text-dark align-items-center footer-left">
             <h1>Quick Links:</h1>
+            <a href="' . $pathToSurface . '/app/landing/public/index.php">Front Page</a>
             <a href="' . $pathToSurface . '/app/dashboard/index.php">Dashboard</a>
             <a href="' . $pathToSurface . '/app/about/public/index.php">About Us</a>
             <a href="' . $pathToSurface . '/app/faq/public/index.php">FAQ</a>
