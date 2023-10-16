@@ -2,7 +2,7 @@
     {
         "username": "test",
         "profileIMG": "\/data\/profile\/img\/1056217177.jpg",
-        "bio": ""
+        "bio": "test"
     },
     {
         "username": "test2",
@@ -52,6 +52,21 @@
     {
         "username": "TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe",
         "profileIMG": "\/data\/profile\/img\/1577264032.jpg",
+        "bio": "Test"
+    },
+    {
+        "username": "",
+        "profileIMG": "\/data\/assets\/account.png",
+        "bio": ""
+    },
+    {
+        "username": "3242",
+        "profileIMG": "\/data\/assets\/account.png",
+        "bio": ""
+    },
+    {
+        "username": "Ben",
+        "profileIMG": "\/data\/profile\/img\/676356419.jpg",
         "bio": "Test"
     }
 ]

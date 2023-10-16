@@ -119,5 +119,38 @@
         "city": "e",
         "state": "...",
         "zip": "e"
+    },
+    {
+        "username": "",
+        "password": "",
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "address": "",
+        "city": "",
+        "state": "Choose...",
+        "zip": ""
+    },
+    {
+        "username": "3242",
+        "password": "234",
+        "firstName": "Brandon",
+        "lastName": "Cooper",
+        "email": "brandoncooper859@gmail.com",
+        "address": "53 Showalter Trace",
+        "city": "Walton",
+        "state": "Choose...",
+        "zip": "41094"
+    },
+    {
+        "username": "Ben",
+        "password": "test",
+        "firstName": "Brandon",
+        "lastName": "Cooper",
+        "email": "brandoncooper859@gmail.com",
+        "address": "53 Showalter Trace",
+        "city": "Walton",
+        "state": "...",
+        "zip": "41094"
     }
 ]
