@@ -1,5 +1,9 @@
 <?php
-require_once("./landingFunctions.php")
+require_once("./landingFunctions.php");
+require_once('../../../lib/settings.php');
+
+$result = $pdo->query('SELECT * FROM bidoramauser');
+
 ?>
 
 <!DOCTYPE html>
