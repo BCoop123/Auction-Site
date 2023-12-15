@@ -225,7 +225,53 @@ class LandingSections {
     // Update Section in Database
     //================================================================================
 
-    // TODO
+    public static function editLandingSection($section_id, $title, $content, $newImageName) {
+        // Include database connection and path config
+        require_once('../../../lib/db.php');
+        
+        // Logic that gets the relative path and root directory
+        $currentScriptDirectory = dirname(__FILE__); // or __DIR__ in PHP 5.3 and later
+        $rootDirectory = getRootDirectory();
+        $relativePathToRoot = getRelativePathToRoot($currentScriptDirectory, $rootDirectory);
+    
+        // Retrieve the existing image_id directly in this function
+        $sql = 'SELECT image_id
+                FROM landingsection
+                WHERE landing_id = ?
+            ';
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$section_id]);
+        $existingImageId = $stmt->fetchColumn(); // Use fetchColumn to get a single value
+    
+        // Update the landingsection table
+        $sql = "UPDATE landingsection
+                SET
+                    title = ?,
+                    content = ?
+                WHERE
+                    landing_id = ?
+                ";
+    
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$title, $content, $section_id]);
+    
+        // Update the image table only if the image has changed
+        if ($existingImageId !== false) {
+            $sql = "UPDATE image
+                    SET
+                        image_name = ?
+                    WHERE
+                        image_id = ?
+                    ";
+    
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$newImageName, $existingImageId]);
+        }
+    
+        return $section_id; // Assuming you want to return the section_id after the edit
+    }
+    
 
     //================================================================================
     // Delete Section in Database
