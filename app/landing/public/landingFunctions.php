@@ -31,6 +31,42 @@ class LandingSections {
 
     }
 
+    //display section
+    public static function displayLandingSection($section_id) {
+        //get array of sections
+        $section = self::readLandingSection($section_id);
+
+        echo '
+        <div class="text-center mt-4">
+            <a href="edit.php?id='. urlencode($section->getSectionId()) .'" class="btn btn-primary button-margin">Edit</a>
+        </div>
+        <div class="text-center mt-4">
+            <a href="delete.php?id='. urlencode($section->getSectionId()) .'" class="btn btn-danger button-margin">Delete</a>
+        </div>
+        <div class="container">
+            <h1>'. $section->getTitle() .'Details</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>IMG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>'. $section->getTitle() .'</td>
+                        <td>'. $section->getContent() .'</td>
+                        <td><img src="'. $section->getImage() .'" width="100" height="100" alt="Section Image"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="index.php">Back to Sections</a>
+        </div>
+        ';
+
+    }
+
     //display sections in a table format
     public static function displayLandingSectionsTable($headings) {
         //get array of sections
@@ -75,6 +111,7 @@ class LandingSections {
     // Read Sections from Database
     //================================================================================
 
+    //read all sections
     public static function readLandingSections() {
         // Include database connection and path config
         require_once('../../../lib/settings.php');
@@ -95,13 +132,44 @@ class LandingSections {
         ');
 
         // Initilize the array for sections and create class instances for sections
-        $sectionArray = [];
+        $sectionsArray = [];
 
         while ($section = $result->fetch()) {
-            $sectionArray[] = new LandingSection($section["landing_id"], $section["title"], $section["content"], $relativePathToRoot . "data" . DIRECTORY_SEPARATOR . "landing" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . $section["image_name"]);
+            $sectionsArray[] = new LandingSection($section["landing_id"], $section["title"], $section["content"], $relativePathToRoot . "data" . DIRECTORY_SEPARATOR . "landing" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . $section["image_name"]);
         }
 
-        return $sectionArray;
+        return $sectionsArray;
+    }
+
+    //read a section with a certian ID
+    public static function readLandingSection($section_id) {
+        // Include database connection and path config
+        require_once('../../../lib/settings.php');
+
+        // Logic that gets the realitive path and root directory
+        $currentScriptDirectory = dirname(__FILE__); // or __DIR__ in PHP 5.3 and later
+        $rootDirectory = getRootDirectory();
+        $relativePathToRoot = getRelativePathToRoot($currentScriptDirectory, $rootDirectory);
+
+        $sql = 'SELECT landing_id
+                    ,title
+                    ,content
+                    ,image_name
+                FROM landingsection AS ls
+                JOIN image AS i
+                    ON ls.image_id = i.image_id
+                WHERE landing_id = ?
+            ';
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$section_id]);
+
+        // Create class instances for sections
+
+        $section = $stmt->fetch();
+        $section = new LandingSection($section["landing_id"], $section["title"], $section["content"], $relativePathToRoot . "data" . DIRECTORY_SEPARATOR . "landing" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . $section["image_name"]);
+
+        return $section;
     }
 
     //================================================================================
@@ -153,7 +221,6 @@ class LandingSections {
 
     }
 
-
     //================================================================================
     // Update Section in Database
     //================================================================================
@@ -200,6 +267,22 @@ class LandingSection {
 
     public function setImage($image_path) {
         $this -> image_path = $image_path;
+    }
+
+    public function getSectionId() {
+        return $this -> landing_id;
+    }
+
+    public function getTitle() {
+        return $this -> title;
+    }
+
+    public function getContent() {
+        return $this -> content;
+    }
+
+    public function getImage() {
+        return $this -> image_path;
     }
 
     public function printLandingSectionLeft() {
