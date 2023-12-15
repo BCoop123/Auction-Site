@@ -7,13 +7,34 @@ importHeader($pathToSurface);
 
 $faqFilePath = '../../../data/faq/faq.txt';
 
+// Include the settings.php file
+require_once("../../../lib/settings.php");
+
 // Check if the form is submitted to save changes
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newContent = $_POST["newContent"];
-    // Save the edited content to the FAQ file
-    file_put_contents($faqFilePath, $newContent);
-    header("Location: index.php"); // Redirect to the FAQ page
-    exit();
+
+    // Update the FAQ content in the database
+    try {
+        // Prepare the SQL statement to update FAQ content in the database
+        $stmt = $pdo->prepare("UPDATE faqsection SET response = :response WHERE question = :question");
+
+        // Split the content into question and response
+        list($question, $response) = explode("\n", $newContent, 2);
+
+        // Bind parameters
+        $stmt->bindParam(':question', $question);
+        $stmt->bindParam(':response', $response);
+
+        // Execute the statement
+        $stmt->execute();
+        
+        header("Location: index.php"); // Redirect to the FAQ page
+        exit();
+    } catch (PDOException $e) {
+        // Handle any errors here
+        echo "<div class='alert alert-danger mt-3'>Error updating FAQ content: " . $e->getMessage() . "</div>";
+    }
 }
 
 // Read the current FAQ content
@@ -45,4 +66,5 @@ $faqContent = file_get_contents($faqFilePath);
 <!-- Footer-->
 <?php
 importFooter($pathToSurface);
-?> 
+?>
+
