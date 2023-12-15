@@ -98,7 +98,7 @@ class LandingSections {
         $sectionArray = [];
 
         while ($section = $result->fetch()) {
-            $sectionArray[] = new LandingSection($section["title"], $section["content"], $relativePathToRoot . "data" . DIRECTORY_SEPARATOR . "landing" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . $section["image_name"]);
+            $sectionArray[] = new LandingSection($section["landing_id"], $section["title"], $section["content"], $relativePathToRoot . "data" . DIRECTORY_SEPARATOR . "landing" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . $section["image_name"]);
         }
 
         return $sectionArray;
@@ -108,7 +108,51 @@ class LandingSections {
     // Create Section in Database
     //================================================================================
 
-    // TODO
+    public static function createLandingSection($image_name, $title, $content) {
+        // Include database connection and path config
+        require_once('../../../lib/settings.php');
+
+        // Logic that gets the realitive path and root directory
+        $currentScriptDirectory = dirname(__FILE__); // or __DIR__ in PHP 5.3 and later
+        $rootDirectory = getRootDirectory();
+        $relativePathToRoot = getRelativePathToRoot($currentScriptDirectory, $rootDirectory);
+
+        $sql = "INSERT INTO image
+                    (
+                        image_name
+                    )
+                    VALUES
+                    (
+                        ?
+                    )
+                ";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$image_name]);
+        $image_id = $pdo->lastInsertId();
+
+        $sql = "INSERT INTO landingsection
+                    (
+                        title
+                        ,content
+                        ,image_id
+                    )
+                    VALUES
+                    (
+                        ?
+                        ,?
+                        ,?
+                    )
+                ";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$title, $content, $image_id]);
+        $landingSectionId = $pdo->lastInsertId();
+
+        return $setLandingId;
+
+    }
+
 
     //================================================================================
     // Update Section in Database
@@ -129,15 +173,21 @@ class LandingSections {
 
 class LandingSection {
     //specify private variables
+    private $landing_id;
     private $title;
     private $content;
     private $image_path;
 
     //constructor
-    public function __construct($title, $content, $image_path) {
+    public function __construct($landing_id, $title, $content, $image_path) {
+        $this -> setLandingId($landing_id);
         $this -> setTitle($title);
         $this -> setContent($content);
         $this -> setImage($image_path);
+    }
+
+    public function setLandingId($landing_id) {
+        $this -> landing_id = $landing_id;
     }
 
     public function setTitle($title) {
@@ -195,7 +245,7 @@ class LandingSection {
     public function printLandingSectionRow() {
         echo '
             <tr>
-                <td><a href="./detail.php?name=' . urlencode($this->title) . '">' . $this->title . '</a></td>
+                <td><a href="./detail.php?id=' . urlencode($this->landing_id) . '">' . $this->title . '</a></td>
                 <td>' . $this->content . '</td>
                 <td><img src="' . $this->image_path . '" width="100" height="100" alt="Section Image"></td>
             </tr>
