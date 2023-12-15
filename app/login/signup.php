@@ -3,6 +3,13 @@
 
 <?php
 require_once('../../lib/loginFunctions.php');
+// Include database connection and path config
+require_once('../../lib/settings.php');
+
+// Logic that gets the realitive path and root directory
+$currentScriptDirectory = dirname(__FILE__); // or __DIR__ in PHP 5.3 and later
+$rootDirectory = getRootDirectory();
+$relativePathToRoot = getRelativePathToRoot($currentScriptDirectory, $rootDirectory);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -10,20 +17,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
     $email = $_POST["email"];
-    $address = $_POST["address"];
+    $street = $_POST["street"];
     $city = $_POST["city"];
     $state = $_POST["state"];
     $zip = $_POST["zip"];
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO users (username, password, firstName, lastName, email, address, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$username, $password, $firstName, $lastName, $email, $address, $city, $state, $zip]);
+        $sql = "SELECT user_id FROM bidoramauser WHERE username = ? OR email = ?";
 
-        header("Location: ../dashboard/index.php");
-        exit();
-    } catch (PDOException $e) {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$username, $email]);
+
+        $user_id = $stmt->fetch();
+
+        if (!$user_id) {
+            $stmt = $pdo->prepare("INSERT INTO bidoramauser (username, password, firstname, lastname, email, street, city, state, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$username, $password, $firstName, $lastName, $email, $street, $city, $state, '']);
+            header("Location: ../dashboard/index.php");
+        }
+
+        else {
+            echo "Cannot create this user";
+        }
+
+    } catch (e) {
         // Handle database error
-        // echo "Failed to add the user. " . $e->getMessage();
+        echo "Failed to add the user.";
     }
 }
 
@@ -62,8 +81,8 @@ importTinyHeader($pathToSurface);
             </div>
 
             <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+                <label for="inputstreet" class="form-label">street</label>
+                <input type="text" class="form-control" id="inputstreet" placeholder="1234 Main St" name="street">
             </div>
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">City</label>

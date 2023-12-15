@@ -2,42 +2,37 @@
 <html lang="en">
 
 <?php
+require_once('../../lib/loginFunctions.php');
+// Include database connection and path config
 require_once('../../lib/settings.php');
 
-$currentScriptDirectory = dirname(__FILE__);
+// Logic that gets the realitive path and root directory
+$currentScriptDirectory = dirname(__FILE__); // or __DIR__ in PHP 5.3 and later
 $rootDirectory = getRootDirectory();
 $relativePathToRoot = getRelativePathToRoot($currentScriptDirectory, $rootDirectory);
 
-try {
-    $pdo = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_user, $db_password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
-
-require_once('../../lib/loginFunctions.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
     try {
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
+        $sql = "SELECT user_id, password FROM bidoramauser WHERE username = ?";
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$username]);
 
-        if ($user && password_verify($password, $user['password'])) {
+        $credentials = $stmt->fetch();
+
+        if (($credentials["user_id"]) && (password_verify($password, $credentials["password"]))) {
             // Login successful
             header("Location: ../dashboard/index.php");
-            exit();
         } else {
             // Login failed
             echo "Invalid username or password.";
         }
-    } catch (PDOException $e) {
-        die("Login failed: " . $e->getMessage());
+    } catch (e) {
+        echo 'Failed to login';
     }
 }
 
