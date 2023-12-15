@@ -2,6 +2,7 @@
 $dir_path = "../../../data/landing";
 $headings = ["Title", "Text", "IMG"];
 require_once('./landing.php');
+require_once("../public/landingFunctions.php");
 
 //stuff for header
 require_once("../../../lib/multipageFunctions.php");
@@ -17,6 +18,6 @@ importHeader($pathToSurface);
 </div>
 
 <?php
-    createTable($headings, getSectionInfo($dir_path));
+    LandingSections::displayLandingSectionsTable($headings);
     importFooter($pathToSurface);
 ?>

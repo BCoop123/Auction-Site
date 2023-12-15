@@ -1,38 +1,12 @@
 <?php
 // Include necessary functions and variables
 require_once('./landing.php');
-
-// Define the path to the sections JSON file
-$sectionsFile = "../../../data/landing/sections.json";
-
-// Function to add a new section to the JSON file
-function addNewSection($sectionsFile, $img, $title, $text) {
-    $existingData = file_get_contents($sectionsFile);
-    $sections = json_decode($existingData, true); // true for associative array
-
-    if (!is_array($sections)) {
-        $sections = []; // Initialize as an empty array if the file is empty or invalid
-    }
-
-    $newSection = [
-        "img" => $img,
-        "title" => $title,
-        "text" => $text
-    ];
-
-    $sections[] = $newSection;
-
-    $jsonContent = json_encode($sections, JSON_PRETTY_PRINT);
-    if (file_put_contents($sectionsFile, $jsonContent) !== false) {
-        return true; // Return true on success
-    }
-    return false; // Return false on failure
-}
+require_once('../public/landingFunctions.php');
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST["title"];
-    $text = $_POST["text"];
+    $content = $_POST["text"];
 
     // If a file was uploaded, process it.
     if (isset($_FILES["img_upload"]) && $_FILES["img_upload"]["error"] == 0) {
@@ -42,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($_FILES["img_upload"]['size'] > 0 && strpos($_FILES["img_upload"]['type'], 'image/') === 0) {
             move_uploaded_file($_FILES["img_upload"]['tmp_name'], '../../../data/landing/img/' . $newFilename);
-            $imgPath = "/data/landing/img/" . $newFilename;
+            $image_name = $newFilename;
         } else {
             echo "Invalid image type.";
             exit();
@@ -52,10 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    if (addNewSection($sectionsFile, $imgPath, $title, $text)) {
-        header("Location: index.php");
+    try {
+        $landing_section_id = LandingSections::createLandingSection($image_name, $title, $content);
+        header("Location: index.php?" . $landing_section_id);
         exit();
-    } else {
+    }
+    catch(e) {
         echo "Failed to add the section.";
     }
 }

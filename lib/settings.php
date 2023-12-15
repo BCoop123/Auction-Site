@@ -56,9 +56,9 @@ function getRelativePathToRoot($currentScriptDirectory, $rootDirectory) {
 }
 
 // Example usage in your functions file
-$currentScriptDirectory = dirname(__FILE__); // or __DIR__ in PHP 5.3 and later
-$rootDirectory = getRootDirectory();
+// $currentScriptDirectory = dirname(__FILE__); // or __DIR__ in PHP 5.3 and later
+// $rootDirectory = getRootDirectory();
 
-$relativePathToRoot = getRelativePathToRoot($currentScriptDirectory, $rootDirectory);
+// $relativePathToRoot = getRelativePathToRoot($currentScriptDirectory, $rootDirectory);
 
 ?>
