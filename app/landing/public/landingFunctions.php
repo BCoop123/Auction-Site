@@ -31,6 +31,46 @@ class LandingSections {
 
     }
 
+    //display sections in a table format
+    public static function displayLandingSectionsTable($headings) {
+        //get array of sections
+        $sections = self::readLandingSections();
+
+        //print top of table
+        echo '
+        <div class="container-fluid">
+            <!-- Bootstrap table -->
+            <table class="table" style="width: 90%; margin: auto;">
+                <thead>
+                    <tr>
+        ';
+
+        //print section headings
+        foreach ($headings as $heading) {
+            echo '<th>' . $heading . '</th>';
+        }
+
+        //print end of headings row
+        echo '
+                    </tr>
+                </thead>
+                <tbody>
+        ';
+
+        //print all the sections
+        foreach ($sections as $key => $section) {
+            $section->printLandingSectionRow();
+        };
+
+        //print bottom of table
+        echo '
+        </tbody>
+            </table>
+        </div>
+        ';
+
+    }
+
     //================================================================================
     // Read Sections from Database
     //================================================================================
@@ -149,6 +189,16 @@ class LandingSection {
                     </div>
                 </div>
             </section>
+        ';
+    }
+
+    public function printLandingSectionRow() {
+        echo '
+            <tr>
+                <td><a href="./detail.php?name=' . urlencode($this->title) . '">' . $this->title . '</a></td>
+                <td>' . $this->content . '</td>
+                <td><img src="' . $this->image_path . '" width="100" height="100" alt="Section Image"></td>
+            </tr>
         ';
     }
 }
