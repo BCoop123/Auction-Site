@@ -2,28 +2,28 @@
 <html lang="en">
 
 <?php
-
 require_once('../../lib/loginFunctions.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userInfo = [
-        $_POST["username"],
-        $_POST["password"],
-        $_POST["firstName"],
-        $_POST["lastName"],
-        $_POST["email"],
-        $_POST["address"],
-        $_POST["city"],
-        $_POST["state"],
-        $_POST["zip"]
-    ];
+    $username = $_POST["username"];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hash the password for security
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $email = $_POST["email"];
+    $address = $_POST["address"];
+    $city = $_POST["city"];
+    $state = $_POST["state"];
+    $zip = $_POST["zip"];
 
+    try {
+        $stmt = $pdo->prepare("INSERT INTO users (username, password, firstName, lastName, email, address, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$username, $password, $firstName, $lastName, $email, $address, $city, $state, $zip]);
 
-    if (addNewUser($userInfo, "../../data/users/users.json")) {
         header("Location: ../dashboard/index.php");
         exit();
-    } else {
-        //echo "Failed to add the user.";
+    } catch (PDOException $e) {
+        // Handle database error
+        // echo "Failed to add the user. " . $e->getMessage();
     }
 }
 
