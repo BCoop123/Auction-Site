@@ -231,7 +231,24 @@ class LandingSections {
     // Delete Section in Database
     //================================================================================
 
-    // TODO
+    public static function deleteLandingSection($section_id) {
+        // Include database connection and path config
+        require_once('../../../lib/db.php');
+
+        // Logic that gets the realitive path and root directory
+        $currentScriptDirectory = dirname(__FILE__); // or __DIR__ in PHP 5.3 and later
+        $rootDirectory = getRootDirectory();
+        $relativePathToRoot = getRelativePathToRoot($currentScriptDirectory, $rootDirectory);
+
+        $sql = "DELETE FROM landingsection
+                WHERE landing_id = ?
+                ";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$section_id]);
+
+        return True;
+    }
 }
 
 //================================================================================
