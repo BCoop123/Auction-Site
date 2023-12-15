@@ -59,8 +59,8 @@ importHeader($pathToSurface);
             }
         }        
         
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_COOKIE["username"])) {
-            $username = $_COOKIE["username"];
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user_id"])) {
+            $username = $_SESSION["user_id"];
             $bio = $_POST["bio"];
             $uploadedFile = $_FILES["profileIMG"];
         
@@ -68,8 +68,8 @@ importHeader($pathToSurface);
         }
         
 
-        if (isset($_COOKIE["username"])) {
-            $username = $_COOKIE["username"];
+        if (isset($_SESSION["user_id"])) {
+            $username = $_SESSION["user_id"];
 
             // Load profiles data
             $data = file_get_contents('../../data/profile/profiles.json');

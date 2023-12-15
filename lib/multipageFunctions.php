@@ -1,11 +1,13 @@
 <?php
+//initilize the session
+session_start();
 
 function getProfileImagePath($pathToSurface, $defaultImg = '/data/assets/account.png') {
     $filePath = $pathToSurface . "/data/profile/profiles.json";
 
     // Check if username cookie is set
-    if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
+    if (isset($_SESSION["user_id"])) {
+        $username = $_SESSION["user_id"];
 
         // Load profiles data
         $data = file_get_contents($filePath);
@@ -23,7 +25,7 @@ function getProfileImagePath($pathToSurface, $defaultImg = '/data/assets/account
 }
 
 function getProfileLink($pathToSurface){
-    if (isset($_COOKIE["username"])) {
+    if (isset($_SESSION["user_id"])) {
         
         return $pathToSurface . "/app/profile/index.php";
 
@@ -45,7 +47,7 @@ function populateSignActionNav($pathToSurface){
     }
 }
 function goToAccount($pathToSurface){
-    if (isset($_COOKIE["username"])) {
+    if (isset($_SESSION["user_id"])) {
         return '<a href="' . $pathToSurface . '/app/profile/index.php"><div class="custom-btn">Account Details</div></a>';
     }
     else {
@@ -55,8 +57,8 @@ function goToAccount($pathToSurface){
 }
 
 function getUserName(){
-    if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
+    if (isset($_SESSION["user_id"])) {
+        $username = $_SESSION["user_id"];
         return $username;
     }
     else {
