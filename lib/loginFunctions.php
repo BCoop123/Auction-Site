@@ -64,7 +64,10 @@ function login($userInfo, $filePath) {
         }
     }
     if ($isAuthenticated) {
-        setcookie("username", $userInfo[0], time() + (10 * 365 * 24 * 60 * 60), "/");
+        //setcookie("username", $userInfo[0], time() + (10 * 365 * 24 * 60 * 60), "/");
+        session_start();
+        $_SESSION["user_id"] = $user["username"];
+        $_SESSION["permission"] = 0;
         return True;
     } else {
         //echo "incorrect credentials";
@@ -86,9 +89,7 @@ function initProfile($username, $filePath) {
     $profiles[] = $newProfile;
 
     $jsonContent = json_encode($profiles, JSON_PRETTY_PRINT);
-    if (file_put_contents($filePath, $jsonContent) !== false) {
-        setcookie("username", $userInfo[0], time() + (10 * 365 * 24 * 60 * 60), "/");
-    }
+    file_put_contents($filePath, $jsonContent);
 }
 
 ?>
