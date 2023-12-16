@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2023 at 02:55 AM
+-- Generation Time: Dec 16, 2023 at 03:51 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -182,7 +182,8 @@ CREATE TABLE `image` (
 INSERT INTO `image` (`image_id`, `image_name`) VALUES
 (1, '04.jpg'),
 (2, '08.jpg'),
-(3, '09.jpg');
+(3, '09.jpg'),
+(12, '129693.jpg');
 
 -- --------------------------------------------------------
 
@@ -204,7 +205,8 @@ CREATE TABLE `landingsection` (
 INSERT INTO `landingsection` (`landing_id`, `title`, `content`, `image_id`) VALUES
 (4, 'Get Shreksy...', 'Living with an ogre as a lover is truly an enchanting experience. Those big, green, rugged hands might seem intimidating at first, but they\'re surprisingly gentle, especially during slow dances in the moonlight.', 1),
 (5, 'Live, Laugh, Love', 'Embrace life the way a donkey relishes waffles: with messy enthusiasm and unexpected delight. Just imagine, if our daily challenges were syrup and butter, tackled with a mouthful of gusto. So, whenever life feels like a steep hill, remember the donkey, and savor every moment like it\'s a bite of your favorite breakfast treat!', 2),
-(13, 'Meet Your Princess!', 'Lord Farquaad, in his grandiose castle, believed not in fate but in the certainty of his magic mirror. \"Mirror, mirror, on the wall,\" he\'d command, seeking not just any love, but the perfect fairy-tale ending.', 11);
+(13, 'Meet Your Princess!', 'Lord Farquaad, in his grandiose castle, believed not in fate but in the certainty of his magic mirror. \"Mirror, mirror, on the wall,\" he\'d command, seeking not just any love, but the perfect fairy-tale ending.', 11),
+(14, 'test', 'test', 12);
 
 --
 -- Indexes for dumped tables
@@ -302,13 +304,13 @@ ALTER TABLE `faqsection`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `image_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `image_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `landingsection`
 --
 ALTER TABLE `landingsection`
-  MODIFY `landing_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `landing_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
