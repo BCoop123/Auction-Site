@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     try {
-        $sql = "SELECT user_id, password, permission FROM bidoramauser WHERE username = ?";
+        $sql = "SELECT user_id, username, password, permission FROM bidoramauser WHERE username = ?";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$username]);

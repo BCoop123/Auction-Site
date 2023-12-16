@@ -1,7 +1,7 @@
 <?php
-if (isset($_COOKIE['username'])) {
-    unset($_COOKIE['username']);
-    setcookie('username', '', time() - 3600, '/'); // Delete the 'username' cookie
+session_destroy();
+foreach ($_COOKIE as $cookieName => $cookieValue) {
+    setcookie($cookieName, '', time() - 3600, '/');
 }
-header('Location: ../app/dashboard/index.php '); 
+header('Location: ../app/dashboard/index.php?status=logout'); 
 ?>

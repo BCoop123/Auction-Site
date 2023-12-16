@@ -64,8 +64,7 @@ function login($userInfo, $filePath) {
         }
     }
     if ($isAuthenticated) {
-        //setcookie("username", $userInfo[0], time() + (10 * 365 * 24 * 60 * 60), "/");
-        session_start();
+        //session_start();
         $_SESSION["user_id"] = $user["username"];
         $_SESSION["permission"] = 0;
         return True;

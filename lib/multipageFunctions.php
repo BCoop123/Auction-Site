@@ -1,12 +1,17 @@
 <?php
 //initilize the session
-session_start();
+if (isset($_GET["status"])) {
+}
+
+else {
+    session_start();
+}
 
 function getProfileImagePath($pathToSurface) {
     // Include database connection and path config
     require_once($pathToSurface . '/lib/db.php');
 
-    // Check if username cookie is set
+    // Check if username session is set
     if (isset($_SESSION["user_id"])) {
         $user_id = $_SESSION["user_id"];
 
@@ -34,7 +39,7 @@ function getProfileImagePath($pathToSurface) {
 
     else {
         $result = "1.png";
-        return $pathToSurface . $result;
+        return $pathToSurface . "\data\profile\img\\" . $result;
     }
 
     // Return default image path if profile or image not found
@@ -55,7 +60,7 @@ function getProfileLink($pathToSurface){
 }
 
 function populateSignActionNav($pathToSurface){
-    if (isset($_COOKIE["username"])) {
+    if (isset($_SESSION["username"])) {
         return '<form action="' . $pathToSurface . '/lib/logout.php" method="post" style="margin: 0; padding: 0;"><button type="submit" class="custom-btn sign-out-button">Sign Out</button></form>';    
     }
     else {
@@ -75,12 +80,11 @@ function goToAccount($pathToSurface){
 
 function getUserName(){
     if (isset($_SESSION["user_id"])) {
-        $username = $_SESSION["user_id"];
+        $username = $_SESSION["username"];
         return $username;
     }
     else {
         return 'Sign In / Sign Up';
-
     }
 
 }
