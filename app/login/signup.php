@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_id = $stmt->fetch();
 
         if (!$user_id) {
-            $stmt = $pdo->prepare("INSERT INTO bidoramauser (username, password, firstname, lastname, email, street, city, state, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$username, $password, $firstName, $lastName, $email, $street, $city, $state, '']);
+            $stmt = $pdo->prepare("INSERT INTO bidoramauser (username, password, firstname, lastname, email, street, city, state, bio, image_id, permission) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$username, $password, $firstName, $lastName, $email, $street, $city, $state, '', 1, 0]);
             header("Location: ../dashboard/index.php");
         }
 

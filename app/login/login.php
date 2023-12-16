@@ -17,20 +17,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     try {
-        $sql = "SELECT user_id, password FROM bidoramauser WHERE username = ?";
+        $sql = "SELECT user_id, password, permission FROM bidoramauser WHERE username = ?";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$username]);
 
         $credentials = $stmt->fetch();
 
-        if (($credentials["user_id"]) && (password_verify($password, $credentials["password"]))) {
-            // Login successful
-            header("Location: ../dashboard/index.php");
-        } else {
-            // Login failed
-            echo "Invalid username or password.";
+        try{
+            try {
+                if ($credentials) {
+                    if (($credentials["user_id"]) && (password_verify($password, $credentials["password"]))) {
+                        // Login successful
+                        session_start();
+                        $_SESSION["user_id"] = $credentials["user_id"];
+                        $_SESSION["username"] = $credentials["username"];
+                        $_SESSION["permission"] = $credentials["permission"];
+        
+                        header("Location: ../dashboard/index.php");
+                    }
+                }
+            } 
+            catch(e) {
+                // Login failed
+                echo "Invalid username or password.";
+            }
         }
+        catch (e) {}
     } catch (e) {
         echo 'Failed to login';
     }

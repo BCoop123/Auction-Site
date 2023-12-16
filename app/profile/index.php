@@ -1,4 +1,9 @@
 <?php
+require_once("../../lib/multipageFunctions.php");
+require_once("../../themes/components/header_footer_import.php");
+$pathToSurface = "../..";
+// Include database connection and path config
+require_once($pathToSurface . '/lib/settings.php');
 
 class ProfilePage
 {
@@ -43,13 +48,6 @@ class ProfilePage
                 break;
             }
         
-            // Save the updated profiles data back to the JSON file
-            $jsonContent = json_encode($profiles, JSON_PRETTY_PRINT);
-            if (file_put_contents($filePath, $jsonContent) !== false) {
-                //echo "Profile updated successfully!";
-            } else {
-                //echo "Error updating profile.";
-            }
         }        
         
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user_id"])) {
@@ -62,12 +60,36 @@ class ProfilePage
     }
 
         if (isset($_SESSION["user_id"])) {
-            $username = $_SESSION["user_id"];
+            $user_id = $_SESSION["user_id"];
 
-        echo "<div class='container mt-5'>";
+            // Load profiles data
+            $sql = "SELECT user_id, username, bio, image_name
+                FROM image i
+                JOIN bidoramauser b
+                ON i.image_id = b.image_id
+                WHERE user_id = ?";
 
-        if ($this->userProfile) {
-            $fullPath = $this->pathToSurface . $this->userProfile["profileIMG"];
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$user_id]);
+
+            $result = $stmt->fetch();
+
+            if ($result) {
+
+                $fullPath = $pathToSurface . "/data/profile/img/" . $result["image_name"];
+                $username = $result["username"];
+                $bio = $result["bio"];
+
+                // Display profile information
+                echo "<div class='text-center'>";
+                echo "<img src='$fullPath' alt='Profile Image' class='rounded-circle' style='width: 150px; height: 150px;'>";
+                echo "<h2>$username</h2>";
+                echo "<p>$bio</p>";
+                echo "<button class='btn btn-primary' data-toggle='modal' data-target='#editProfileModal' style='margin-bottom: 20px'>Edit Profile</button>";
+                echo "</div>";
+            } else {
+                echo "<p class='text-danger'>Profile not found!</p>";
+            }
 
             // Display profile information
             echo "<div class='text-center'>";
@@ -76,7 +98,7 @@ class ProfilePage
             echo "<p>{$this->userProfile["bio"]}</p>";
             echo "<button class='btn btn-primary' data-toggle='modal' data-target='#editProfileModal' style='margin-bottom: 20px'>Edit Profile</button>";
             echo "</div>";
-        } else {
+        else {
             echo "<p class='text-danger'>Profile not found!</p>";
         }
 
