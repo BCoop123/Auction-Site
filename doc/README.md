@@ -1,5 +1,3 @@
-VIDEO LINK: https://youtu.be/NAf7TKAkINA
-
 Auction-Site
 ------------------
  Site where users can buy and sell items in the style of an auction.
@@ -106,8 +104,10 @@ Username - e
 Password - e
 
 ============================================================
-Youtube link
+Youtube links
 ============================================================
 
-url: https://youtu.be/LnPuHFbWA3Y
+Midterm Links: https://youtu.be/NAf7TKAkINA
+
+Final Link: https://youtu.be/LnPuHFbWA3Y
 
