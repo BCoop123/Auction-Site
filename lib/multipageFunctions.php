@@ -55,7 +55,7 @@ function getProfileLink($pathToSurface){
 }
 
 function populateSignActionNav($pathToSurface){
-    if (isset($_COOKIE["username"])) {
+    if (isset($_SESSION["username"])) {
         return '<form action="' . $pathToSurface . '/lib/logout.php" method="post" style="margin: 0; padding: 0;"><button type="submit" class="custom-btn sign-out-button">Sign Out</button></form>';    
     }
     else {
@@ -74,13 +74,12 @@ function goToAccount($pathToSurface){
 }
 
 function getUserName(){
-    if (isset($_SESSION["user_id"])) {
-        $username = $_SESSION["user_id"];
+    if (isset($_SESSION["username"])) {
+        $username = $_SESSION["username"];
         return $username;
     }
     else {
         return 'Sign In / Sign Up';
-
     }
 
 }
