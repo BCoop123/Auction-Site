@@ -52,8 +52,15 @@ if ($auctionDetails) {
         echo '<a href="delete.php?id=' . $auctionId . '" class="btn btn-danger">Delete</a>';
     }
 
+
+    // Display place bid button for logged-in users
+    if (isset($_SESSION['user_id'])) {
+        echo '<a href="bid.php?id=' . $auctionId . '" class="btn btn-info">Place Bid</a>';
+    }
+
     // Display place bid button for all users
     echo '<a href="bid.php?id=' . $auctionId . '" class="btn btn-info">Place Bid</a>';
+
 
     // Add more details as needed
     echo '</div>';
