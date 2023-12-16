@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </div>
-
+<br>
 <!-- Footer-->
 <?php
 importFooter($relativePathToRoot);
