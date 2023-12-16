@@ -13,7 +13,7 @@ importHeader($relativePathToRoot);
 // Get the auction ID from the query parameter
 $auctionId = isset($_GET['id']) ? $_GET['id'] : null;
 
-// SQL query to retrieve auction information with image details
+// Fetch the auction details from the database
 $query = 'SELECT owner_id, title, description, highest_bid, start_date, end_date, i.image_name
           FROM auction AS a
           JOIN auctionimagerelationship AS air ON a.auction_id = air.auction_id
@@ -52,8 +52,14 @@ if ($auctionDetails) {
         echo '<a href="delete.php?id=' . $auctionId . '" class="btn btn-danger">Delete</a>';
     }
 
-    // Display place bid button for all users
-    echo '<a href="bid.php?id=' . $auctionId . '" class="btn btn-info">Place Bid</a>';
+    // Bid form
+    echo '<form method="post" action="process_bid.php?id=' . $auctionId . '">';
+    echo '<div class="form-group">';
+    echo '<label for="bidAmount">Enter Bid Amount:</label>';
+    echo '<input type="number" class="form-control" name="bidAmount" id="bidAmount" required>';
+    echo '</div>';
+    echo '<button type="submit" class="btn btn-success">Submit Bid</button>';
+    echo '</form>';
 
     // Add more details as needed
     echo '</div>';
@@ -61,6 +67,7 @@ if ($auctionDetails) {
     echo '</div>';
     echo '</div>';
     echo '</div>';
+
 } else {
     echo '<p>Auction not found.</p>';
 }
