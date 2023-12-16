@@ -68,5 +68,10 @@
         "username": "Ben",
         "profileIMG": "\/data\/profile\/img\/676356419.jpg",
         "bio": "Test"
+    },
+    {
+        "username": null,
+        "profileIMG": "\/data\/assets\/account.png",
+        "bio": ""
     }
 ]

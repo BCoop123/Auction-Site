@@ -2,26 +2,43 @@
 //initilize the session
 session_start();
 
-function getProfileImagePath($pathToSurface, $defaultImg = '/data/assets/account.png') {
-    $filePath = $pathToSurface . "/data/profile/profiles.json";
+function getProfileImagePath($pathToSurface) {
+    // Include database connection and path config
+    require_once($pathToSurface . '/lib/db.php');
 
     // Check if username cookie is set
     if (isset($_SESSION["user_id"])) {
-        $username = $_SESSION["user_id"];
+        $user_id = $_SESSION["user_id"];
 
-        // Load profiles data
-        $data = file_get_contents($filePath);
-        $profiles = json_decode($data, true);
+        $sql = "SELECT image_name
+                FROM image i
+                JOIN bidoramauser b
+                ON i.image_id = b.image_id
+                WHERE user_id = ?";
 
-        foreach ($profiles as $profile) {
-            if ($profile["username"] == $username) {
-                return $pathToSurface . $profile["profileIMG"];
-            }
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$user_id]);
+
+        $result = $stmt->fetch();
+
+        if ($result) {
+            return $pathToSurface . "\data\profile\img\\" . $result["image_name"];
         }
+        else {
+            $result = "1.png";
+            return $pathToSurface . "\data\profile\img\\" . $result;
+        }
+        
+
+    }
+
+    else {
+        $result = "1.png";
+        return $pathToSurface . $result;
     }
 
     // Return default image path if profile or image not found
-    return $pathToSurface . $defaultImg;
+    //return $pathToSurface . $result;
 }
 
 function getProfileLink($pathToSurface){
