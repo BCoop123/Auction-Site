@@ -2,6 +2,8 @@
 require_once("../../lib/multipageFunctions.php");
 require_once("../../themes/components/header_footer_import.php");
 $pathToSurface = "../..";
+// Include database connection and path config
+require_once($pathToSurface . '/lib/settings.php');
 
 importHeader($pathToSurface);
 
@@ -50,17 +52,10 @@ importHeader($pathToSurface);
                 }
             }
         
-            // Save the updated profiles data back to the JSON file
-            $jsonContent = json_encode($profiles, JSON_PRETTY_PRINT);
-            if (file_put_contents($filePath, $jsonContent) !== false) {
-                //echo "Profile updated successfully!";
-            } else {
-                //echo "Error updating profile.";
-            }
         }        
         
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_COOKIE["username"])) {
-            $username = $_COOKIE["username"];
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user_id"])) {
+            $username = $_SESSION["user_id"];
             $bio = $_POST["bio"];
             $uploadedFile = $_FILES["profileIMG"];
         
@@ -68,29 +63,32 @@ importHeader($pathToSurface);
         }
         
 
-        if (isset($_COOKIE["username"])) {
-            $username = $_COOKIE["username"];
+        if (isset($_SESSION["user_id"])) {
+            $user_id = $_SESSION["user_id"];
 
             // Load profiles data
-            $data = file_get_contents('../../data/profile/profiles.json');
-            $profiles = json_decode($data, true);
+            $sql = "SELECT user_id, username, bio, image_name
+                FROM image i
+                JOIN bidoramauser b
+                ON i.image_id = b.image_id
+                WHERE user_id = ?";
 
-            $userProfile = null;
-            foreach ($profiles as $profile) {
-                if ($profile["username"] == $username) {
-                    $userProfile = $profile;
-                    break;
-                }
-            }
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$user_id]);
 
-            $fullPath = $pathToSurface . $userProfile["profileIMG"];
+            $result = $stmt->fetch();
 
-            if ($userProfile) {
+            if ($result) {
+
+                $fullPath = $pathToSurface . "/data/profile/img/" . $result["image_name"];
+                $username = $result["username"];
+                $bio = $result["bio"];
+
                 // Display profile information
                 echo "<div class='text-center'>";
                 echo "<img src='$fullPath' alt='Profile Image' class='rounded-circle' style='width: 150px; height: 150px;'>";
-                echo "<h2>{$userProfile["username"]}</h2>";
-                echo "<p>{$userProfile["bio"]}</p>";
+                echo "<h2>$username</h2>";
+                echo "<p>$bio</p>";
                 echo "<button class='btn btn-primary' data-toggle='modal' data-target='#editProfileModal' style='margin-bottom: 20px'>Edit Profile</button>";
                 echo "</div>";
             } else {

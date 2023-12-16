@@ -1,7 +1,6 @@
 <?php
 $dir_path = "../../../data/landing";
 $headings = ["Title", "Text", "IMG"];
-require_once('./landing.php');
 
 //stuff for header
 require_once("../../../lib/multipageFunctions.php");
@@ -10,13 +9,31 @@ $pathToSurface = "../../..";
 
 importHeader($pathToSurface);
 
-?>
+if (isset($_SESSION["user_id"]) && (isset($_SESSION["permission"]))) {
+    if ($_SESSION["permission"] == 1) {
+        require_once("../public/landingFunctions.php");
 
-<div class="text-center mt-4">
-    <a href="create.php" class="btn btn-primary button-margin">Create New</a>
-</div>
+        echo '
+        <div class="text-center mt-4">
+            <a href="create.php" class="btn btn-primary button-margin">Create New</a>
+        </div>
+        ';
 
-<?php
-    createTable($headings, getSectionInfo($dir_path));
-    importFooter($pathToSurface);
+        LandingSections::displayLandingSectionsTable($headings);
+    }
+    else {
+        echo '
+            You cannot see this page!
+        ';
+    }
+}
+
+else {
+    echo '
+        You cannot see this page!
+    ';
+}
+
+//stuff for footer
+importFooter($pathToSurface);
 ?>

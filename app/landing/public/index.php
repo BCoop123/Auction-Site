@@ -1,5 +1,5 @@
 <?php
-require_once("./landingFunctions.php")
+require_once("./landingFunctions.php");
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ require_once("./landingFunctions.php")
         </header>
         <!-- Content -->
 
-        <?php displaySections() ?>
+        <?php LandingSections::displayLandingSections() ?>
 
         <!-- Footer-->
         <footer class="py-5 bg-black">

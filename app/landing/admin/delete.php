@@ -1,23 +1,25 @@
 <?php
 // Include necessary functions
 require_once('./landing.php');
+require_once('../public/landingFunctions.php');
 
 $message = "";
 $pathToRoot =  "../../..";
 
 // Check if the 'name' parameter is set in the URL
-if (isset($_GET['name'])) {
-    $sectionName = $_GET['name'];
+if (isset($_GET['id'])) {
+    $section_id = $_GET['id'];
 
-    $sectionDetails = getSectionDetails($sectionName);
-    $imgPath = $sectionDetails['img'];
+    $section = LandingSections::readLandingSection($section_id);
+    $imgPath = $section->getImage();
+    //echo($imgPath);
 
     // Check if the form is submitted to delete the section
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm_delete'])) {
-        if (deleteSection($sectionName)) {
+        if (LandingSections::deleteLandingSection($section_id)) {
             // Delete the associated image
-            if (file_exists($pathToRoot . $imgPath) && is_writable($pathToRoot . $imgPath)) {
-                unlink($pathToRoot . $imgPath);
+            if (file_exists($imgPath) && is_writable($imgPath)) {
+                unlink($imgPath);
             }
             header("Location: index.php?message=deleted");
             exit();
@@ -53,7 +55,7 @@ if (isset($_GET['name'])) {
         }
         ?>
 
-        <form method="post" action="delete.php?name=<?= urlencode($sectionName) ?>">
+        <form method="post" action="delete.php?id=<?= urlencode($section_id) ?>">
             <button type="submit" name="confirm_delete" class="btn btn-danger">Yes, Delete</button>
             <a href="index.php" class="btn btn-secondary">Cancel</a>
         </form>

@@ -34,19 +34,23 @@ function saveAuctionToDatabase($pdo, $title, $description, $startingBid, $startD
         // Start a transaction to ensure atomicity
         $pdo->beginTransaction();
 
+        // Get user ID from the session
+        $userId = $_SESSION['user_id'];
+
         // Prepare the SQL statement for auction insertion
-        $stmtAuction = $pdo->prepare("INSERT INTO auction (title, description, starting_bid, highest_bid, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmtAuction = $pdo->prepare("INSERT INTO auction (owner_id, title, description, starting_bid, highest_bid, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         // Set highest_bid equal to starting_bid
         $highestBid = $startingBid;
 
         // Bind parameters for auction insertion
-        $stmtAuction->bindParam(1, $title);
-        $stmtAuction->bindParam(2, $description);
-        $stmtAuction->bindParam(3, $startingBid);
-        $stmtAuction->bindParam(4, $highestBid);
-        $stmtAuction->bindParam(5, $startDate);
-        $stmtAuction->bindParam(6, $endDate);
+        $stmtAuction->bindParam(1, $userId);
+        $stmtAuction->bindParam(2, $title);
+        $stmtAuction->bindParam(3, $description);
+        $stmtAuction->bindParam(4, $startingBid);
+        $stmtAuction->bindParam(5, $highestBid);
+        $stmtAuction->bindParam(6, $startDate);
+        $stmtAuction->bindParam(7, $endDate);
 
         // Execute the auction insertion statement
         $stmtAuction->execute();
@@ -75,12 +79,16 @@ function saveAuctionToDatabase($pdo, $title, $description, $startingBid, $startD
 
         // Commit the transaction
         $pdo->commit();
+
+        return true; // Indicate success
+
     } catch (PDOException $e) {
         // Rollback the transaction on error
         $pdo->rollBack();
 
         // Handle any errors here
         echo "<div class='alert alert-danger mt-3'>Error saving auction to database: " . $e->getMessage() . "</div>";
+        return false; // Indicate failure
     }
 }
 
@@ -107,14 +115,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $startDate = $_POST["startDate"];
     $endDate = $_POST["endDate"];
 
-    // Debug: Output form data
-    echo "Title: $title, Description: $description, Starting Bid: $startingBid, Start Date: $startDate, End Date: $endDate";
-
     // Save form data to the database
-    saveAuctionToDatabase($pdo, $title, $description, $startingBid, $startDate, $endDate);
+    $auctionCreationResult = saveAuctionToDatabase($pdo, $title, $description, $startingBid, $startDate, $endDate);
 
-    // Display a success message
-    echo "<div class='alert alert-success mt-3'>Auction created successfully!</div>";
+    // Display success message if auction creation was successful
+    if ($auctionCreationResult) {
+        echo "<div class='alert alert-success mt-3'>Auction created successfully!</div>";
+    }
 }
 ?>
 
@@ -134,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <section class="py-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <?php
-                    // Debug: Output each row
+                    // Output each auction row
                     while ($row = $stmt->fetch()) {
                         display_auction_info($row);
                     }
@@ -177,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </div>
-
+<br>
 <!-- Footer-->
 <?php
 importFooter($relativePathToRoot);

@@ -1,29 +1,53 @@
 <?php
+//initilize the session
+if (isset($_GET["status"])) {
+}
 
-function getProfileImagePath($pathToSurface, $defaultImg = '/data/assets/account.png') {
-    $filePath = $pathToSurface . "/data/profile/profiles.json";
+else {
+    session_start();
+}
 
-    // Check if username cookie is set
-    if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
+function getProfileImagePath($pathToSurface) {
+    // Include database connection and path config
+    require_once($pathToSurface . '/lib/db.php');
 
-        // Load profiles data
-        $data = file_get_contents($filePath);
-        $profiles = json_decode($data, true);
+    // Check if username session is set
+    if (isset($_SESSION["user_id"])) {
+        $user_id = $_SESSION["user_id"];
 
-        foreach ($profiles as $profile) {
-            if ($profile["username"] == $username) {
-                return $pathToSurface . $profile["profileIMG"];
-            }
+        $sql = "SELECT image_name
+                FROM image i
+                JOIN bidoramauser b
+                ON i.image_id = b.image_id
+                WHERE user_id = ?";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$user_id]);
+
+        $result = $stmt->fetch();
+
+        if ($result) {
+            return $pathToSurface . "\data\profile\img\\" . $result["image_name"];
         }
+        else {
+            $result = "1.png";
+            return $pathToSurface . "\data\profile\img\\" . $result;
+        }
+        
+
+    }
+
+    else {
+        $result = "1.png";
+        return $pathToSurface . "\data\profile\img\\" . $result;
     }
 
     // Return default image path if profile or image not found
-    return $pathToSurface . $defaultImg;
+    //return $pathToSurface . $result;
 }
 
 function getProfileLink($pathToSurface){
-    if (isset($_COOKIE["username"])) {
+    if (isset($_SESSION["user_id"])) {
         
         return $pathToSurface . "/app/profile/index.php";
 
@@ -36,7 +60,7 @@ function getProfileLink($pathToSurface){
 }
 
 function populateSignActionNav($pathToSurface){
-    if (isset($_COOKIE["username"])) {
+    if (isset($_SESSION["username"])) {
         return '<form action="' . $pathToSurface . '/lib/logout.php" method="post" style="margin: 0; padding: 0;"><button type="submit" class="custom-btn sign-out-button">Sign Out</button></form>';    
     }
     else {
@@ -45,7 +69,7 @@ function populateSignActionNav($pathToSurface){
     }
 }
 function goToAccount($pathToSurface){
-    if (isset($_COOKIE["username"])) {
+    if (isset($_SESSION["user_id"])) {
         return '<a href="' . $pathToSurface . '/app/profile/index.php"><div class="custom-btn">Account Details</div></a>';
     }
     else {
@@ -55,13 +79,12 @@ function goToAccount($pathToSurface){
 }
 
 function getUserName(){
-    if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
+    if (isset($_SESSION["user_id"])) {
+        $username = $_SESSION["username"];
         return $username;
     }
     else {
         return 'Sign In / Sign Up';
-
     }
 
 }
