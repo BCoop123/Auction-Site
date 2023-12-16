@@ -39,6 +39,21 @@ if ($auctionDetails) {
     echo '<p class="card-text">Current Bid: $' . $auctionDetails['highest_bid'] . '</p>';
     echo '<p class="card-text">Start Date: ' . $auctionDetails['start_date'] . '</p>';
     echo '<p class="card-text">End Date: ' . $auctionDetails['end_date'] . '</p>';
+<<<<<<< Updated upstream
+=======
+
+    // Display edit, delete, and place bid buttons if the user is the owner
+    if ($isOwner) {
+        echo '<a href="edit.php?id=' . $auctionId . '" class="btn btn-primary">Edit</a>';
+        echo '<a href="delete.php?id=' . $auctionId . '" class="btn btn-danger">Delete</a>';
+    }
+
+    // Display place bid button for logged-in users
+    if (isset($_SESSION['user_id'])) {
+        echo '<a href="bid.php?id=' . $auctionId . '" class="btn btn-info">Place Bid</a>';
+    }
+
+>>>>>>> Stashed changes
     // Add more details as needed
     echo '</div>';
     echo '</div>';
