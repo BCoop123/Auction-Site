@@ -92,3 +92,16 @@ FAQ (public)      -> Ben A
 Profile           -> Brandon
 Detail (admin)    -> N/A
 Detail (public)   -> N/A
+
+============================================================
+Admin logins
+============================================================
+
+Admin: 
+Username - t 
+Password - t
+
+Regular: 
+Username - e 
+Password - e
+
