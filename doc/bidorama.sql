@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2023 at 03:51 AM
+-- Generation Time: Dec 16, 2023 at 05:52 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,9 +43,10 @@ CREATE TABLE `auction` (
 --
 
 INSERT INTO `auction` (`auction_id`, `title`, `description`, `starting_bid`, `highest_bid`, `start_date`, `end_date`, `owner_id`) VALUES
-(1, 'Antique Watch', 'A vintage watch from the 1920s.', 100, 150, '2023-01-01', '2023-01-10', 1),
+(1, 'Antique Watch', 'A vintage watch from the 1920s.', 100, 156, '2023-01-01', '2023-01-10', 1),
 (2, 'Rare Painting', 'An original painting by a renowned artist.', 500, 800, '2023-02-01', '2023-02-15', 2),
-(3, 'Classic Car', '1950s convertible in pristine condition.', 10000, 12000, '2023-03-01', '2023-03-20', 3);
+(3, 'Classic Car', '1950s convertible in pristine condition.', 10000, 12000, '2023-03-01', '2023-03-20', 3),
+(4, 'car', 'test', 4, 4, '2023-12-13', '2023-12-28', 13);
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,9 @@ CREATE TABLE `auctionimagerelationship` (
 INSERT INTO `auctionimagerelationship` (`auction_id`, `image_id`) VALUES
 (1, 1),
 (2, 2),
-(3, 3);
+(3, 3),
+(4, 1),
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -162,7 +165,8 @@ CREATE TABLE `faqsection` (
 INSERT INTO `faqsection` (`faq_id`, `question`, `response`) VALUES
 (1, 'How do I place a bid?', 'To place a bid, navigate to the auction page and enter your bid amount.'),
 (2, 'What happens if I win an auction?', 'If you win, you will be notified, and the auction details will be provided.'),
-(3, 'Can I cancel a bid?', 'No, bids are final and cannot be canceled. Please bid responsibly.');
+(3, 'Can I cancel a bid?', 'No, bids are final and cannot be canceled. Please bid responsibly.'),
+(4, 'How do I place a bid????', 'To place a bid, navigate to the auction page and enter your bid amount.???');
 
 -- --------------------------------------------------------
 
@@ -180,10 +184,13 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`image_id`, `image_name`) VALUES
-(1, '04.jpg'),
-(2, '08.jpg'),
+(1, '385704.jpg'),
+(2, '671388.jpg'),
 (3, '09.jpg'),
-(12, '129693.jpg');
+(12, '168157.jpg'),
+(13, NULL),
+(14, NULL),
+(15, '190845.jpg');
 
 -- --------------------------------------------------------
 
@@ -203,10 +210,11 @@ CREATE TABLE `landingsection` (
 --
 
 INSERT INTO `landingsection` (`landing_id`, `title`, `content`, `image_id`) VALUES
-(4, 'Get Shreksy...', 'Living with an ogre as a lover is truly an enchanting experience. Those big, green, rugged hands might seem intimidating at first, but they\'re surprisingly gentle, especially during slow dances in the moonlight.', 1),
-(5, 'Live, Laugh, Love', 'Embrace life the way a donkey relishes waffles: with messy enthusiasm and unexpected delight. Just imagine, if our daily challenges were syrup and butter, tackled with a mouthful of gusto. So, whenever life feels like a steep hill, remember the donkey, and savor every moment like it\'s a bite of your favorite breakfast treat!', 2),
+(4, 'Get Bidding!', '\"Embrace the thrill of the auction, seize the moment, and bid boldly to make that coveted item yours!\"', 1),
+(5, 'Bid... Laugh... Love!', '\"Bid, laugh, and love the excitement of auctions as you uncover treasures and create memorable moments on our platform!\" - Jesus, 5 B.C.\r\n', 2),
 (13, 'Meet Your Princess!', 'Lord Farquaad, in his grandiose castle, believed not in fate but in the certainty of his magic mirror. \"Mirror, mirror, on the wall,\" he\'d command, seeking not just any love, but the perfect fairy-tale ending.', 11),
-(14, 'test', 'test', 12);
+(14, 'Available at any time of the day!', 'Explore our platform\'s offerings, available at any time of the day, ensuring you can indulge in the thrill of auctions whenever it suits you!', 12),
+(15, 'test', 'test2', 15);
 
 --
 -- Indexes for dumped tables
@@ -274,7 +282,7 @@ ALTER TABLE `landingsection`
 -- AUTO_INCREMENT for table `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `auction_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `auction_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `auctionbid`
@@ -292,61 +300,25 @@ ALTER TABLE `bidoramauser`
 -- AUTO_INCREMENT for table `contactsection`
 --
 ALTER TABLE `contactsection`
-  MODIFY `contact_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `contact_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `faqsection`
 --
 ALTER TABLE `faqsection`
-  MODIFY `faq_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `faq_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `image_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `image_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `landingsection`
 --
 ALTER TABLE `landingsection`
-  MODIFY `landing_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `auction`
---
-ALTER TABLE `auction`
-  ADD CONSTRAINT `auction_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `bidoramauser` (`user_id`);
-
---
--- Constraints for table `auctionbid`
---
-ALTER TABLE `auctionbid`
-  ADD CONSTRAINT `auctionbid_ibfk_1` FOREIGN KEY (`auction_id`) REFERENCES `auction` (`auction_id`),
-  ADD CONSTRAINT `auctionbid_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `bidoramauser` (`user_id`);
-
---
--- Constraints for table `auctionimagerelationship`
---
-ALTER TABLE `auctionimagerelationship`
-  ADD CONSTRAINT `auctionimagerelationship_ibfk_1` FOREIGN KEY (`auction_id`) REFERENCES `auction` (`auction_id`),
-  ADD CONSTRAINT `auctionimagerelationship_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `image` (`image_id`);
-
---
--- Constraints for table `bidoramauser`
---
-ALTER TABLE `bidoramauser`
-  ADD CONSTRAINT `bidoramauser_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `image` (`image_id`);
-
---
--- Constraints for table `landingsection`
---
-ALTER TABLE `landingsection`
-  ADD CONSTRAINT `landingsection_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `image` (`image_id`);
+  MODIFY `landing_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
