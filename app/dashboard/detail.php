@@ -39,8 +39,6 @@ if ($auctionDetails) {
     echo '<p class="card-text">Current Bid: $' . $auctionDetails['highest_bid'] . '</p>';
     echo '<p class="card-text">Start Date: ' . $auctionDetails['start_date'] . '</p>';
     echo '<p class="card-text">End Date: ' . $auctionDetails['end_date'] . '</p>';
-<<<<<<< Updated upstream
-=======
 
     // Display edit, delete, and place bid buttons if the user is the owner
     if ($isOwner) {
@@ -53,7 +51,6 @@ if ($auctionDetails) {
         echo '<a href="bid.php?id=' . $auctionId . '" class="btn btn-info">Place Bid</a>';
     }
 
->>>>>>> Stashed changes
     // Add more details as needed
     echo '</div>';
     echo '</div>';
