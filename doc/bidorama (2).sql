@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2023 at 02:27 AM
+-- Generation Time: Dec 16, 2023 at 02:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -117,9 +117,9 @@ CREATE TABLE `bidoramauser` (
 --
 
 INSERT INTO `bidoramauser` (`user_id`, `username`, `password`, `firstname`, `lastname`, `email`, `street`, `city`, `state`, `bio`, `image_id`, `permission`) VALUES
-(11, 'test', '$2y$10$VybYwAtq2r5KLxhHiGRkSutsY/triYFzWnc8yLMIh8j0ZsfurBFJ.', 'Brandon', 'Cooper', 'brandoncooper859@gmail.com', '53 Showalter Trace', 'Walton', '...', '', 1, 0),
+(11, 'test', '$2y$10$VybYwAtq2r5KLxhHiGRkSutsY/triYFzWnc8yLMIh8j0ZsfurBFJ.', 'Brandon', 'Cooper', 'brandoncooper859@gmail.com', '53 Showalter Trace', 'Walton', '...', '', 1, 1),
 (12, 'e', '$2y$10$pPBLGER39a.9..lLJL4WsezfUuM2DpAXXM.cOXBc65Xu8qdonZj8C', 'e', 'e', 'e@gmail.com', 'e', 'e', '...', '', 1, 0),
-(13, 't', '$2y$10$4Yz6DLo5J6swZ5eXKEZ.POv5tRORLbsVwD8DwuF3unzL9.j19Rdji', 't', 't', 'test@gmail.com', 't', 't', '...', '', 1, 0);
+(13, 't', '$2y$10$4Yz6DLo5J6swZ5eXKEZ.POv5tRORLbsVwD8DwuF3unzL9.j19Rdji', 't', 't', 'test@gmail.com', 't', 't', '...', '', 1, 1);
 
 -- --------------------------------------------------------
 
