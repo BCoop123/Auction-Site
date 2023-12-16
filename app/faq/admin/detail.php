@@ -72,7 +72,7 @@ if (isset($_POST['delete'])) {
     </table>
 
     <!-- Add a delete button to remove the contact entry -->
-    <form method="post">
+    <form method="post" action="deletecontact.php?id=<?php echo $contactId; ?>">
         <input type="submit" name="delete" value="Delete Entry" class="btn btn-danger">
     </form>
 
