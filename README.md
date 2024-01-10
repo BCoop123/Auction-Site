@@ -10,15 +10,11 @@ Site where users can buy and sell items in the style of an auction.
 
 https://youtu.be/-F8-A5i3AjQ?si=6WdCmoFf2yNm4oJ4
 
-[![BBB Music Site](https://img.youtube.com/vi/-F8-A5i3AjQ/0.jpg)](https://youtu.be/-F8-A5i3AjQ?si=Sy3Tb-MpvXHVjg7s)
+[![Midterm Presentation](https://img.youtube.com/vi/NAf7TKAkINA/0.jpg)](https://youtu.be/NAf7TKAkINA?si=an-fARin2MUGl-oJ)
 
 https://youtu.be/-F8-A5i3AjQ?si=6WdCmoFf2yNm4oJ4
 
-[![BBB Music Site](https://img.youtube.com/vi/-F8-A5i3AjQ/0.jpg)](https://youtu.be/-F8-A5i3AjQ?si=Sy3Tb-MpvXHVjg7s)
-
-Midterm Link: [https://youtu.be/NAf7TKAkINA](https://youtu.be/NAf7TKAkINA?si=an-fARin2MUGl-oJ)
-
-Final Link: [https://youtu.be/LnPuHFbWA3Y](https://youtu.be/LnPuHFbWA3Y?si=RQEcsu-DwxFbRWLx)
+[![Final Presentation](https://img.youtube.com/vi/LnPuHFbWA3Y/0.jpg)](https://youtu.be/LnPuHFbWA3Y?si=RQEcsu-DwxFbRWLx)
 
 ## Structure
 
