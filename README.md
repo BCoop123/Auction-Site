@@ -1,29 +1,28 @@
-## Note: this readme file was originally under docs... it wasn't showing up on repo homepage so I moved it
+# Auction-Site
 
-Auction-Site
-------------------
- Site where users can buy and sell items in the style of an auction.
+Collaborators: Brandon Cooper, Ben Acuff, Ben Molloy, Logan Poe
 
- Collaborators
-------------------
+## Overview
 
-Ben Acuff
+Site where users can buy and sell items in the style of an auction.
 
-Brandon Cooper
+## Site Presentations
 
-Ben Molloy
+https://youtu.be/-F8-A5i3AjQ?si=6WdCmoFf2yNm4oJ4
 
-Logan Poe
+[![BBB Music Site](https://img.youtube.com/vi/-F8-A5i3AjQ/0.jpg)](https://youtu.be/-F8-A5i3AjQ?si=Sy3Tb-MpvXHVjg7s)
 
- TO-DO List
-------------------
+https://youtu.be/-F8-A5i3AjQ?si=6WdCmoFf2yNm4oJ4
 
+[![BBB Music Site](https://img.youtube.com/vi/-F8-A5i3AjQ/0.jpg)](https://youtu.be/-F8-A5i3AjQ?si=Sy3Tb-MpvXHVjg7s)
 
-============================================================
-Structure
-============================================================
+Midterm Link: [https://youtu.be/NAf7TKAkINA](https://youtu.be/NAf7TKAkINA?si=an-fARin2MUGl-oJ)
 
-Landing
+Final Link: [https://youtu.be/LnPuHFbWA3Y](https://youtu.be/LnPuHFbWA3Y?si=RQEcsu-DwxFbRWLx)
+
+## Structure
+
+### Landing
 -> admin
    -> landing.php
    -> edit.php
@@ -33,7 +32,7 @@ Landing
 -> public
    -> index.php
 
-About
+### About
 -> admin
    -> about.php
    -> edit.php
@@ -43,29 +42,16 @@ About
 -> public
    -> index.php
 
-Login
+### Login
 -> signup.php
 -> login.php
 
-Dashboard
+### Dashboard
 -> index.php
 
-FAQ
-->admin
-   -> about.php
-   -> edit.php
-   -> create.php
-   -> delete.php
-   -> detail.php
-->public
-   -> index.php
-
-Profile
--> index.php
-
-Detail
+### FAQ
 -> admin
-   -> detail.php
+   -> about.php
    -> edit.php
    -> create.php
    -> delete.php
@@ -73,9 +59,19 @@ Detail
 -> public
    -> index.php
 
-============================================================
-Responsibilities
-============================================================
+### Profile
+-> index.php
+
+### Detail
+   -> detail.php
+   -> edit.php
+   -> update.php
+   -> delete.php
+   -> detail.php
+   -> process_bid.php
+   -> bid.php
+
+## Responsibilities
 
 Header (reusable) -> Ben M
 Footer (reusable) -> Ben M
@@ -85,17 +81,14 @@ About (admin)     -> Ben A
 About (public)    -> Ben A
 About (admin)     -> Ben A
 About (public)    -> Ben A
-Login 		 -> Brandon
+Login 		          -> Brandon
 Dashboard         -> Logan
 FAQ (admin)       -> Ben A
 FAQ (public)      -> Ben A
 Profile           -> Brandon
-Detail (admin)    -> N/A
-Detail (public)   -> N/A
+Detail            -> Ben A
 
-============================================================
-Admin logins
-============================================================
+## Admin logins
 
 Admin: 
 Username - t 
@@ -104,12 +97,3 @@ Password - t
 Regular: 
 Username - e 
 Password - e
-
-============================================================
-Youtube links
-============================================================
-
-Midterm Links: https://youtu.be/NAf7TKAkINA
-
-Final Link: https://youtu.be/LnPuHFbWA3Y
-
